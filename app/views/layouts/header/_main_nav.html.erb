@@ -1,0 +1,41 @@
+<!-- .span9 -->
+<nav class="span9">
+
+    <!-- #menu -->
+    <ul id="menu">
+      <% if current_user %>
+        <li>
+          <% if current_user.has_role?(:vendor) %>
+          <!-- see all portfolious uploaded -->
+            <%= link_to "Dashboard", projects_url , :class => "current" %> 
+          <% else current_user.has_role?(:basic) %>
+          <!-- see all bookmarked projects -->
+            <%= link_to "Dashboard", bookmarks_url , :class => "current" %> 
+          <% end %>
+          
+        </li>
+      <% end %>
+      
+      
+        <li>
+          <%= link_to "Home", root_url , :class => "current" %> 
+        </li>
+        <li><a href="./about.html" >Fresh</a> 
+        </li>
+        <!-- <li><a href="./portfolio.html" class="current" data-description="Portfolio Page">Portfolio</a>
+                  <ul>
+                      <li><a href="./portfolio-left.html">Portfolio Left Sidebar</a></li>
+                      <li><a href="./portfolio-right.html">Portfolio Right Sidebar</a></li>
+                      <li><a href="./portfolio-single-left.html">Portfolio Single Left</a></li>
+                      <li><a href="./portfolio-single-right.html">Portfolio Single Right</a></li>
+                  </ul>
+              </li> -->
+        <li><a href="./blog-left.html" >Explore</a> 
+        </li>
+    
+        <li>
+          <%= link_to "Login", new_user_session_url %> 
+        </li>
+    </ul><!-- /#menu -->
+
+</nav><!-- .span9-->

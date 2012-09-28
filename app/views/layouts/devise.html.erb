@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js" ><!--<![endif]-->
+<head>
+  <!-- BEGIN: basic page needs -->
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" /> 
+  <title><%= COMPANY_NAME %> | <%= COMPANY_MOTO %></title>
+  <!-- END: basic page needs -->
+  
+  <link rel="shortcut icon" href='<%= asset_path "favicon.ico"%>' >
+  
+  <!-- BEGIN: css -->
+  <%= stylesheet_link_tag    "application", :media => "all" %> 
+  <%= yield :additional_css %>
+  <!-- END: css -->
+   
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <!-- .container -->
+  <section class="container"> 
+    <%= render :partial => "layouts/header" %>
+    
+    <%#= render :partial => "layouts/breadcrumb" %> 
+    
+    
+    <%= yield %>   
+    
+    <%= render :partial => "layouts/footer" %> 
+  </section><!-- /.container -->
+  
+  
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster --> 
+  <!-- BEGIN: js -->
+  <%= javascript_include_tag "application" %> 
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!-- END: js -->
+  <%= yield :additional_js %>
+</body>
+</html>

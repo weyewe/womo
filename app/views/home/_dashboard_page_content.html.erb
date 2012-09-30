@@ -1,0 +1,50 @@
+<section class="span9 alignright testimonials" id="page">
+
+  <% array = [
+    {
+      :pic => 'http://www.axioo.com/files/blog/hendry_cindythia.jpg',
+      :teaser => "Perfection is in the eyes of God."
+    },
+    {
+      :pic => 'http://www.menaralighthouse.com/images/article/000_MG_3455-01.jpg___4GK8r2uRZCAdduhSdEDz.jpg',
+      :teaser => "markus+pamela!
+
+
+
+      It is a love story between Jakarta and Bandung, Markus lives in Jakarta while Pam in Bandung. here is the interesting story, they almost finished their wedding preparation but suddenly they wanted us to do their prewedding photo. The prewedding itself is a representation of how they have been dating so far. The aeroplane scene was a phase where they did the long-distance relationship. Actually we wanted to do the session in airport, but due to complex bureaucracy we chose another option.
+
+
+
+      We can't avoid social media nowadays, neither they did. Markus sent a message via Facebook to Pamela and from there everything was begun. Surprisingly, they still keep the message, we think it is like a souvenir in their relationship. At the day of prewedding session, we need to travel quite far from one place to another, the weather and sunshine were too harsh at afternoon, so we waited around 4 PM and found out dark clouds :O everywhere. We used that situation to accentuate the clouds dramatically! Really love the aeroplane scene...
+
+
+
+      Hey lover, keep going!
+
+      "
+    },
+    {
+      :pic => 'http://www.monopictura.com/blog/wp-content/uploads/2012/08/mono-w-sansri-05.jpg',
+      :teaser => 'test'
+    },
+    {
+      :pic => 'http://www.foreachlove.com/wp-content/uploads/2012/08/0001.jpg',
+      :teaser => 'test'
+    }  
+  ]%>
+  
+  
+  <% array.each do |element| %>
+    <article class='row'> 
+      <div class='span6'>
+        <%= image_tag element[:pic] %>
+      </div>
+      <div class='span3'>
+        <%=  element[:teaser]%>
+      </div>
+    </article>
+  <% end %>
+  
+   
+ 
+</section>

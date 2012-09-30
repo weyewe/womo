@@ -1,0 +1,20 @@
+<aside class="span3 alignleft" id="sidebar">
+  
+  
+  <% if current_user.has_role?(:admin) %>
+    <%= get_process_nav(:admin, params).html_safe %>   
+  <% end %>
+  
+  <% if current_user.has_role?(:vendor) %>
+    <%= get_process_nav(:vendor, params).html_safe %>   
+  <% end %>
+  
+  <% if current_user.has_role?(:basic) %>
+    <%= get_process_nav(:basic, params).html_safe %>   
+  <% end %>
+  
+  <%= get_process_nav(:setup, params).html_safe %>   
+
+  
+
+</aside>

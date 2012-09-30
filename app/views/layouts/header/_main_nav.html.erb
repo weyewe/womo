@@ -4,15 +4,8 @@
     <!-- #menu -->
     <ul id="menu">
       <% if current_user %>
-        <li>
-          <% if current_user.has_role?(:vendor) %>
-          <!-- see all portfolious uploaded -->
-            <%= link_to "Dashboard", projects_url , :class => "current" %> 
-          <% else current_user.has_role?(:basic) %>
-          <!-- see all bookmarked projects -->
-            <%= link_to "Dashboard", bookmarks_url , :class => "current" %> 
-          <% end %>
-          
+        <li>  
+            <%= link_to "Dashboard", dashboard_url , :class => "current" %>   
         </li>
       <% end %>
       
@@ -34,7 +27,11 @@
         </li>
     
         <li>
-          <%= link_to "Login", new_user_session_url %> 
+          <% if  current_user %> 
+            <%= link_to "Logout", destroy_user_session_url %> 
+          <% else %>
+            <%= link_to "Login", new_user_session_url %>  
+          <% end %>
         </li>
     </ul><!-- /#menu -->
 

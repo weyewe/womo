@@ -4,4 +4,4 @@ basic_role = Role.create :name => USER_ROLE[:basic]
 
 admin = User.create_main_user( :password => "willy1234", :password_confirmation => "willy1234", :email => "admin@gmail.com" )
 
-mono = User.create_main_user( :password => "willy1234", :password_confirmation => "willy1234", :email => "mono@gmail.com" )
+mono = User.create_vendor_user( :password => "willy1234", :password_confirmation => "willy1234", :email => "mono@gmail.com" )

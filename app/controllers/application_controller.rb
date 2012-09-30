@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   def deduce_after_sign_in_url 
     
     if current_user.has_role?(:admin )
-      return root_url  
+      return dashboard_url  
     end
     
     if current_user.has_role?(:vendor )

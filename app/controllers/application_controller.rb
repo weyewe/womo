@@ -34,4 +34,14 @@ class ApplicationController < ActionController::Base
   end
   
   
+  def ensure_project_membership
+    @project_membership = @project.get_project_membership_for( current_user )
+    
+    if @project_membership.nil?
+      redirect_to select_project_for_collaboration_url
+      return
+    end
+  end
+  
+  
 end

@@ -2,7 +2,17 @@
   <div class='span6'>
   
     <% if project.main_picture.nil? %>
-      <%= image_tag 'upload_images_prompt.jpg' %>
+      <%#= image_tag 'upload_images_prompt.jpg' %>
+      <div class="alert alert-error">
+        <strong>Ouch!</strong> You don't have any pictures uploaded yet. 
+        
+        <p>
+          Why don't you try to 
+              <%= link_to "upload some pictures?", 
+                      new_project_picture_url(project), 
+                      :style => "font-weight:bold; color:#e95850;" %>
+        </p>
+      </div>
     <% else %>
       <%= image_tag project.main_picture.dashboard_image_url %>
     <% end %>

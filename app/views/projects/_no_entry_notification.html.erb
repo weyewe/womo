@@ -2,7 +2,10 @@
 
 <article class='row' id='no_entry_notification'> 
   <div class='span6'>
-    <%= image_tag 'upload_images_prompt.jpg' %>
+    <div class="alert alert-error">
+      <button data-dismiss="alert" class="close" type="button">×</button>
+      <strong>Ouch!</strong> You don't have any images uploaded yet. Why don't you try to upload some? 
+    </div>
   </div>
   <div class='span3'>
     <h3>

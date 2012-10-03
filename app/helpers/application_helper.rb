@@ -12,6 +12,45 @@ module ApplicationHelper
   
   
 =begin
+  TRANSLOADIT
+=end
+  def transloadit_with_max_size( template , size_mb )
+    
+    if Rails.env.production?
+      transloadit_read = YAML::load( File.open( Rails.root.to_s + "/config/transloadit.yml") )
+    elsif Rails.env.development?
+      transloadit_read = YAML::load( File.open( Rails.root.to_s + "/config/transloadit_dev.yml") )
+    end
+    
+    
+    
+    
+    auth_key = transloadit_read['auth']['key']
+    auth_secret = transloadit_read['auth']['secret']
+    duration = transloadit_read['auth']['duration']
+    template = transloadit_read['templates'][template]
+  
+    params = JSON.generate({
+      :auth => {
+        :expires => (Time.now + duration).utc.strftime('%Y/%m/%d %H:%M:%S+00:00') ,
+      # Time.now.utc.strftime('%Y/%m/%d %H:%M:%S+00:00'),
+        :key => auth_key,
+        :max_size => size_mb*1024*1024
+      },
+      :template_id => template 
+    })
+    
+    
+    digest = OpenSSL::Digest::Digest.new('sha1')
+    signature = OpenSSL::HMAC.hexdigest(digest, auth_secret, params)
+    [params, signature]
+  end
+  
+  
+  def compose_transloadit_upload_url(params, signature)
+    TRANSLOADIT_UPLOAD_URL + "?params=#{params}&signature=#{signature}"
+  end
+=begin
   Process Navigation related activity
 =end  
 
@@ -137,7 +176,11 @@ module ApplicationHelper
           {
             :controller => 'projects',
             :action => 'index'
-          } 
+          },
+          {
+            :controller => "pictures",
+            :action => "new"
+          }
         ]
       },
       {

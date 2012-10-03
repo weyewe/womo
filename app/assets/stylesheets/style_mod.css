@@ -6,12 +6,12 @@ div.project-description{ margin-bottom:20px;  background-color: #FCFCFC;
 }
 
 article.dashboard_project_entry { 
-  border-bottom: 1px dashed #F2F2F2;
+  border-bottom: 1px dashed rgb(230,230,230);
   padding-bottom: 20px;
   margin-bottom:20px;
   }
   
-form.no_content_form{  background-color: #FFF9E8;
+.no_content_form{  background-color: #FFF9E8;
      border: 1px solid #E6E6E6;
      display: none;
      margin-top: 5px;

@@ -1,0 +1,418 @@
+
+
+
+<% content_for :additional_js do %> 
+  
+   
+  <script type="text/javascript" src="http://bp.yahooapis.com/2.4.21/browserplus-min.js"></script> 
+  <%= javascript_include_tag "plupload.full", "jquery.plupload.queue" %> 
+
+ 
+  <script type="text/javascript">
+    $(document).ready(function(){
+      
+      // show the loader, if everything is loaded
+      // $("#upload_starter").show();
+      $("#loading_uploader_notification").fadeOut();
+      $("#upload_picture").fadeIn();
+      
+      
+      $("#uploadifive_wrapper_table").show();
+      // $("#file_upload").uploadify("disable", true);
+      
+      
+      
+      
+      
+      
+      var params_value = $("#params").attr("value");
+      var signature_value = $("#signature").attr("value");
+      var wait_value = $("#wait").attr("value");
+      
+      var uploaded_file = {};
+      var pic_id_array = []
+      var check_image_processing_progress = 0 ;
+      
+      var is_from_cancel =0 ;
+      
+      var selected_counter = 0 ;
+      var uploaded_counter = 0;
+      var processed_counter = 0 ;
+      var failed_counter  = 0 ;
+      var failed_upload_file_name_list = [] ;
+      
+      
+      var uploader = $("#uploader").pluploadQueue({
+         // General settings
+         runtimes : 'html5',
+         url : '<%= TRANSLOADIT_UPLOAD_URL.html_safe %>',
+         // max_file_size : '10mb',
+          //          chunk_size : '1mb',
+         // unique_names : true,
+        dragdrop : false, 
+         // Resize images on clientside if we can
+          // resize : {width : 320, height : 240  , quality : 90},
+      
+         // Specify what files to browse for
+          // filters : [
+          //            {title : "Image files", extensions : "jpg,gif,png"},
+          //            {title : "Zip files", extensions : "zip"}
+          //          ],
+      
+         // Flash settings
+         flash_swf_url : '<%= PLUPLOAD_SWF_URL.html_safe %>',
+      
+         // Silverlight settings
+         silverlight_xap_url : '<%= PLUPLOAD_SILVERLIGHT_XAP_URL.html_safe %>',
+          preinit : {
+            Init: function(up, info) {
+      
+              // log('[Init]', 'Info:', info, 'Features:', up.features);
+              // console.log('params_value: ' +params_value );
+              //           console.log('signature: ' +signature_value );
+              //           console.log('wait: ' +wait_value );
+              //           console.log("init is done");
+            },
+      
+            UploadFile: function(up, file) {
+              // log('[UploadFile]', file);
+      
+              // You can override settings before the file is uploaded
+              // up.settings.url = 'upload.php?id=' + file.id;
+              
+              $("#preloader").show();
+              $("#upload_cancel").show();
+      
+              up.settings.multipart_params =  {
+                'params' : params_value,
+                'signature' : signature_value,
+                'wait' : wait_value
+              };
+              // console.log("upload file is done");
+            }
+          }, 
+         // Post init events, bound after the internal events
+         init : {
+           Refresh: function(up) {
+             // Called when upload shim is moved
+             // console.log('[Refresh]');
+           },
+      
+           StateChanged: function(up) {
+             // Called when the state of the queue is changed
+              // console.log('[StateChanged]', up.state == plupload.STARTED ? "STARTED" : "STOPPED");
+           },
+      
+           QueueChanged: function(up) {
+             // Called when the files in queue are changed by adding/removing files
+             // console.log('[QueueChanged]');
+           },
+      
+           UploadProgress: function(up, file) {
+             // Called while a file is being uploaded
+             // console.log('[UploadProgress]', 'File:', file, "Total:", up.total);
+           },
+      
+           FilesAdded: function(up, files) {
+             // Callced when files are added to queue
+             // console.log('[FilesAdded]');
+      
+             selected_counter = selected_counter+ files.length ;
+             // plupload.each(files, function(file) {
+              //                console.log('  File:', file);
+              //              });
+              $("#selected_counter").text(selected_counter);
+           },
+      
+           FilesRemoved: function(up, files) {
+             // Called when files where removed from queue
+             // console.log('[FilesRemoved]');
+             selected_counter = selected_counter - files.length ; 
+             $("#selected_counter").text(selected_counter);
+        // on remove, reduce the number of selected counter by 1 
+             // plupload.each(files, function(file) {
+            //                console.log('  File:', file);
+            //              });
+           },
+      
+           FileUploaded: function(up, file, info) {
+             // Called when a file has finished uploading
+             // console.log('[FileUploaded] File:', file, "Info:", info);
+             // console.log("The god damned file is uploaded!!! yipieee.. we need to set the background jobs then");
+             
+             
+             // console.log("called the FileUploaded");
+             //             console.log("the file name is " + file.name );
+             
+             // plupload.DONE (upload complete and succeeded),  5 
+             // plupload.FAILED (upload failed),    4
+             // plupload.QUEUED (file has been queued),   1
+             // plupload.UPLOADING (file is currently uploading).  2
+             
+             // called the FileUploaded
+             // 
+             // 
+             //       the file name is RM02-016.jpg
+             // 
+             // 
+             //       The fail plupload.FAILED: 4
+             // 
+             // 
+             //       The fail plupload.HTTP_ERROR: -200
+             // 
+             // 
+             //       The fail plupload.GENERIC_ERROR : -100
+             // 
+             // 
+             //       The fail plupload.IO_ERROR: -300
+             // 
+             // 
+             //       The fail plupload.SECURITY_ERROR: -400
+             // 
+             // 
+             //       The fail plupload.QUEUED: 1
+             // 
+             //       new (line 2085)
+             // 
+             //       The fail plupload.UPLOADING: 2
+             // 
+             //       new (line 2086)
+             // 
+             //       The fail plupload.DONE: 5
+             // 
+             //       new (line 2087)
+             // 
+             //       The file.status: 5
+             
+                      //     
+                      // console.log("The fail plupload.FAILED: " + plupload.FAILED);  //4
+                      // console.log("The fail plupload.HTTP_ERROR: " + plupload.HTTP_ERROR);
+                      // console.log("The fail plupload.GENERIC_ERROR : " + plupload.GENERIC_ERROR );
+                      // console.log("The fail plupload.IO_ERROR: " + plupload.IO_ERROR);
+                      // console.log("The fail plupload.SECURITY_ERROR: " + plupload.SECURITY_ERROR);
+                      // 
+                      // console.log("The fail plupload.QUEUED: " + plupload.QUEUED);
+                      // console.log("The fail plupload.UPLOADING: " + plupload.UPLOADING);
+                      // console.log("The fail plupload.DONE: " + plupload.DONE); 
+                      // 
+              
+             // console.log("The file.status: " +file.status );
+             if( file.status == plupload.FAILED) {
+               // console.log("THe upload fails");
+               failed_counter  = failed_counter + 1 ; 
+               $("#failed_counter").text( failed_counter );
+               $("#fail-list").append("<li>" + file.name +"</li>");
+             }else if(file.status ==  plupload.DONE){
+               
+               parsedData = jQuery.parseJSON( info["response"] ); 
+                $.ajax({
+                  url: '<%= create_picture_from_assembly_url(@project)%>',
+                  type: "POST",
+                  data: {
+                    'assembly_url' : parsedData["assembly_url"]
+                  },
+                  dataType: 'json',
+                  success: function(response){
+                    // uploaded_file.push( jQuery.parseJSON( response ) )
+
+                    // console.log( response );
+
+                    var new_pic = {};
+                    // new_pic[response["picture_id"]] = response["is_completed"];
+                    //                      uploaded_file.push( new_pic) ;
+                    uploaded_file[ response["picture_id"] ] = response["is_completed"];
+
+                    pic_id_array.push(response["picture_id"] );
+
+                    if( check_image_processing_progress == 0 ){
+                      check_image_processing_progress  = 1; 
+                      setTimeout(function(){ 
+                         checkTransloaditProcessing(); 
+                         }, 5000);
+                    }
+                    //  total key in object: Object.keys(uploaded_file).length
+
+
+                    uploaded_counter +=1 ;
+                    $("#uploaded_counter").text(uploaded_counter);
+                    // $("#success-list").append("<li>" + file.name +"</li>");
+                    // console.log("outside uploaded_file length is " + Object.keys(uploaded_file).length  );
+                    // console.log("ajax request is done");
+                    // console.log("gonna set the time out");
+
+                  }
+                });
+             }
+             
+             
+              
+              
+           },
+      
+           ChunkUploaded: function(up, file, info) {
+             // Called when a file chunk has finished uploading
+             // console.log('[ChunkUploaded] File:', file, "Info:", info);
+           },
+      
+           Error: function(up, args) {
+             // Called when a error has occured
+             // console.log('[error] ', args);
+             // console.log("The shit is in error state");
+             //          console.log("The args is : " + args);
+             //          console.log("The up is : " + up);
+             //          
+             //          console.log("up.status is " + up.name); 
+             
+             // failed_upload_file_name_list.push()
+             // on error, remove that file from the queue 
+           }
+         }
+          
+      });
+      
+      
+      
+      
+
+     
+        
+        function totalProcessedFile(){
+          var counter  = 0 ; 
+
+          for( var i = 0 ;  i < pic_id_array.length ; i++){
+            if( uploaded_file[pic_id_array[i]]   ==  1 ){
+              counter += 1;
+            }
+          }
+          return counter; 
+        }
+
+        function checkTransloaditProcessing(){
+          //  if the selected == uploaded == processed
+          // reset page. haha. voila! sweet! 
+
+          //  we have uploaded_file variable, (array, storing picture_id, is_processed object)
+          var non_completed_pic_id_list = {} ;
+
+          var pic_list = "";
+          for( var i=0; i < pic_id_array.length; i++ ){
+            var no_completed_pic_id  = pic_id_array[i];
+            if( uploaded_file[ no_completed_pic_id ]   ==  0 ){
+              pic_list = pic_list + "," + no_completed_pic_id;
+            }
+
+          }
+
+          non_completed_pic_id_list["non_completed_pic_id_list"] = pic_list;
+          // console.log("The pic list is " + pic_list );
+
+
+
+
+          $.ajax({
+            url: '<%= transloadit_status_for_picture_url %>',
+            type: "POST",
+            data: non_completed_pic_id_list,
+            dataType: 'json',
+            success: function(response){
+              // prepend the new image 
+              //  the response is the list of completed images id, based on those uploaded
+              for(var i =0 ; i < response.length; i++){
+                uploaded_file[response[i]] = 1; 
+              }
+
+
+              processed_counter = totalProcessedFile();
+              $("#processed_counter").text(processed_counter);
+              // Object.keys(uploaded_file).length == 
+              
+              var upload_success_counter = selected_counter - failed_counter ; 
+              
+              // var selected_counter = 0 ;
+              //            var uploaded_counter = 0;
+              //            var processed_counter = 0 ;
+              //            var failed_counter  = 0 ;
+              //            
+             
+              
+
+              if(  (uploaded_counter == processed_counter)  && 
+                    ( uploaded_counter == upload_success_counter ) ){ 
+                if( failed_counter ==0  ) {
+                  // $("#fail-upload-alert-wrapper").show();
+                  // $("#fail-alert-list").replaceWith($("#success-list") );
+                  // $("#upload_cancel").hide();
+                  // $("#preloader").hide();
+                  window.location.reload(true);
+                }else{
+                  // show the warning 
+                  $("#fail-upload-alert-wrapper").show();
+                  $("#fail-alert-list").replaceWith($("#fail-list") );
+                  $("#upload_cancel").hide();
+                  $("#preloader").hide();
+                }
+                
+              }else{
+                // console.log("gonna repeat the checking");
+                setTimeout(function(){ 
+                  checkTransloaditProcessing(); 
+                  }, 5000);
+              }
+            }
+          });
+        }
+
+        // upload starter
+        $("#upload_starter").click(function(){
+          // $('#file_upload').uploadifive('upload');
+          // console.log("clicked upload");
+          // $('#file_upload').uploadify('upload', '*');
+          // $("#file_upload").uploadify('disable', true);
+          
+          uploader = $('#uploader').pluploadQueue();
+          uploader.start();
+          $("#file_upload_loading").show();
+
+          $("#upload_cancel").show();
+          $("#preloader").show();
+          $("#upload_starter").hide();
+          return false;
+        });
+
+
+        $("#upload_cancel").click(function(){
+          uploader = $('#uploader').pluploadQueue();
+          uploader.stop();
+          $("#preloader").hide();
+          $("#upload_starter").show();
+          $(this).hide();
+          return false;
+          // window.location.reload(true);
+
+          //  hide the cancel, refresh
+        });
+        
+        
+        // $("#upload_cancel").click(function(){
+        // 
+        //     // $("#file_upload_loading").hide();
+        //     // $("#file_upload").show();
+        // 
+        //     $("#upload_cancel").hide();
+        //     $("#preloader").hide();
+        //     // console.log("hiding preloader");
+        //     $("#upload_starter").show();
+        //     // console.log("gonna clear queue");
+        //     // $('#file_upload').uploadifive('clearQueue');
+        //     // $('#file_upload').uploadify('cancel', "*");
+        //     return false;
+        //   });
+        //     
+      // console.log("end setup shit");
+           
+  
+    });
+  </script>
+<% end %>
+
+ 

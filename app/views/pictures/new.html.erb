@@ -12,35 +12,73 @@
       <div id='new_object_opener' > 
         <a class="btn btn-success btn-large form_opener">
           <i class="icon-plus icon-white"></i>
-          Create Project
+          Upload Picture
         </a>
       </div>
 
       <br />
 
-      <%= render :partial => "projects/new_object_form", :locals => {
-        :new_object => @new_picture,
-        :url => projects_url 
-      }%> 
+
+      <div class='row'>
+        <div class='span6'>
+          <%= render :partial => "pictures/uploader/plupload_uploader" %>
+        </div>
+        <div class='span2 no_content_form'>
+          <table cellpadding="0" cellspacing="0" border="0" 
+                class="table table-striped table-bordered" id="stat" style="margin-top:10px;"> 
+              <tbody>
+                <tr>
+                  <td style='font-weight:bold;'>Selected</td>
+                  <td  id="selected_counter">0</td>
+                </tr>
+              
+                <tr>
+                  <td style='font-weight:bold;'>
+                    Uploaded
+                  </td>
+                  <td>
+                    <span id="uploaded_counter">0</span>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td style='font-weight:bold;'>
+                    Resized
+                  </td>
+                  <td>
+                    <span id="processed_counter">0</span>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td style='font-weight:bold;'>
+                    Failed
+                  </td>
+                  <td>
+                    <span id="failed_counter">0</span>
+                    
+                  </td>
+                </tr> 
+              </tbody>
+          </table>
+          <ul id='fail-list'>
+            
+          </ul>
+        </div>
+      </div>
+      
+      
+      
+      <% content_for :additional_css do %>
+        <%= stylesheet_link_tag "jquery.plupload.queue"%>
+      <% end %>
+       
+      <%= render :partial => "pictures/inline_js/plupload_js"%>
+       
     </div>
 
 
-
-
-
-
-
-    <% if @pictures.length != 0 %>
-      <% @pictures.each do |picture| %>
-        <%= render :partial => "pictures/object_list_entry", :locals => {
-          :object => picture
-        } %>
-      <% end %> 
-    
-    <% else %>
-      <%= render :partial => "projects/no_entry_notification"  %>
-    <% end %>
-    
+ 
      
   </section>
   

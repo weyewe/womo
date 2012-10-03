@@ -37,6 +37,27 @@ $(document).ready(function(){
   });
   
   
+  $('.pic-toggle-button').toggleButtons({ 
+    label: {
+      enabled: "MAIN",
+      disabled: "OFF"
+    },
+    onChange: function ($el, status, e) {
+        // $el = $('#toggle-button'); 
+        // status = [true, false], the value of the checkbox
+        // e = the event
+        if( status == true ){
+          console.log("The status is true");
+        }else if(status==false){
+          console.log("The status is false");
+        }
+        // console.log($el, status, e); 
+      // fire the data to the server
+      //  switch all other main display status as false, return to the 
+      // browser to toggle all the button
+      // hide showLoading 
+    }
+  });
   
   
 });

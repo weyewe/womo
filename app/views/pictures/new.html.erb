@@ -78,22 +78,17 @@
     </div>
 
 
-    <section class="portfolio clearfix">
+    <div>
       
       <% @pictures.each do |picture| %>
-        <article  class='span4'>
-          <%= image_tag picture.dashboard_image_url%>
-          <!-- <span class="p-text">
-                   <h2>Lorem ipsum dolor</h2>
-                   <h4>Branding</h4>
-                 </span> -->
-       
-        </article>
+          <%= render :partial => 'pictures/entry', :locals => {
+            :picture => picture 
+          }%>
       <% end %>
       
 
 
-    </section>
+    </div>
 
  
      

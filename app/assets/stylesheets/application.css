@@ -8,6 +8,7 @@
  *= require bootstrap-responsive
  *= require responsive
  *= require skin-default
+ *= require bootstrap-toggle-buttons
  *= require style_mod
  *= require_self
 */

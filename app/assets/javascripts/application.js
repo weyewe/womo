@@ -15,6 +15,7 @@
 //= require modernizr
 //= require bootstrap
 //= require jquery.showLoading.min
+//= require jquery.toggle.buttons
 //= require utility
 //= require script 
  

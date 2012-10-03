@@ -1,0 +1,29 @@
+<article class='row dashboard_project_entry' > 
+  <div class='span6'>
+  
+      <%= image_tag picture.dashboard_image_url %> 
+  </div>
+  <div class='span3'>
+    
+    
+    <div class='project-description'>
+      <%= picture.name %>
+    </div>
+    
+
+    <ul class="latest-post post-statistic"> 
+      <li class="clearfix"> 
+        <a class="btn btn-danger btn-large form_opener">
+          <i class="icon-remove icon-white"></i>
+          Delete
+        </a>
+      </li>  
+    </ul>
+    
+    <div  id='toggler-<%=  picture.id %>' class='pic-toggle-button'>
+      <input type="checkbox">
+    </div>
+
+
+  </div>
+</article>

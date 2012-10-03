@@ -1,6 +1,6 @@
 <%= render :partial => "layouts/dashboard_guide", :locals => {
-  :title => "Portfolio",
-  :description => "Manage your portfolio to be seen by the public"
+  :title => "Picture",
+  :description => "Upload/Delete Picture"
 } %> 
 
 
@@ -19,7 +19,7 @@
       <br />
 
       <%= render :partial => "projects/new_object_form", :locals => {
-        :new_object => Project.new,
+        :new_object => @new_picture,
         :url => projects_url 
       }%> 
     </div>
@@ -30,10 +30,10 @@
 
 
 
-    <% if @projects.length != 0 %>
-      <% @projects.each do |project| %>
-        <%= render :partial => "projects/object_list_entry", :locals => {
-          :project => project
+    <% if @pictures.length != 0 %>
+      <% @pictures.each do |picture| %>
+        <%= render :partial => "pictures/object_list_entry", :locals => {
+          :object => picture
         } %>
       <% end %> 
     
@@ -41,10 +41,7 @@
       <%= render :partial => "projects/no_entry_notification"  %>
     <% end %>
     
-    
-    <!--  FAKE article, for starting up --> 
-    <%#= render :partial => "projects/fake_articles" %>
-    
+     
   </section>
   
   <!-- END OF THE DASHBOARD PAGE  -->

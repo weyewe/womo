@@ -1,6 +1,16 @@
 module ApplicationHelper
   
   ACTIVE = "current"
+  
+  def pic_url( pic ) 
+    if picture_url.nil? or picture_url.length == 0 
+      return  'upload_images_prompt.jpg'
+    else
+      return picture_url 
+    end
+  end
+  
+  
 =begin
   Process Navigation related activity
 =end  

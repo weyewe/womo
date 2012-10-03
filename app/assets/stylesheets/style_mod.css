@@ -1,0 +1,18 @@
+ul.post-statistic { list-style:none ; margin-left: 5px; } 
+ul.post-statistic li { border-bottom: 1px solid #EFEFEF; }
+
+div.project-description{ margin-bottom:20px;  background-color: #FCFCFC;
+    border: 1px dashed #F2F2F2; padding: 15px;
+}
+
+article.dashboard_project_entry { 
+  border-bottom: 1px dashed #F2F2F2;
+  padding-bottom: 20px;
+  margin-bottom:20px;
+  }
+  
+form.no_content_form{  background-color: #FFF9E8;
+     border: 1px solid #E6E6E6;
+     display: none;
+     margin-top: 5px;
+     padding: 20px;}

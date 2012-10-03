@@ -1,0 +1,61 @@
+<article class='row dashboard_project_entry' > 
+  <div class='span6'>
+  
+    <% if project.main_picture.nil? %>
+      <%= image_tag 'upload_images_prompt.jpg' %>
+    <% else %>
+      <%= image_tag project.main_picture.dashboard_image_url %>
+    <% end %>
+    
+  </div>
+  <div class='span3'>
+    
+    <h1><%= project.title %></h1>
+    <div class='project-description'>
+      <% if project.description.nil? %>
+        No description yet. 
+      <% else %>
+        <%=  project.description[0..150] + "..." %>
+      <% end %>
+      
+    </div>
+    
+
+    <ul class="latest-post post-statistic">
+      <!-- <li class="clearfix">
+        <%#= image_tag 'post-format/latest-video.png', :style => 'opacity:1 ;'%>
+        <a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a>
+        <span class="date">June 30, 2012</span>
+      </li>
+      <li class="clearfix">
+        <%#= image_tag 'post-format/latest-standart.png', :style => 'opacity:1 ;'%>
+        <a href="#">Lorem ipsum dolor sit amet</a>
+        <span class="date">June 30, 2012</span>
+      </li> -->
+      <li class="clearfix">
+        <%= link_to new_project_picture_url(project) do %>
+           <%= image_tag 'post-format/latest-gallery.png', :style => 'opacity:1 ;'%>
+        <% end %>
+       
+        <a href="#">Manage Pictures</a>
+        <!-- <span class="date">June 30, 2012</span> -->
+      </li>
+      <!-- <li class="clearfix">
+           <%= image_tag 'post-format/latest-quote.png', :style => 'opacity:1 ;'%>
+           <a href="#">Lorem ipsum dolor sit amet adipiscing</a>
+           <span class="date">June 30, 2012</span>
+         </li> -->
+      <li class="clearfix">
+        
+        <%= link_to 'root_url' do %>
+           <%= image_tag 'post-format/latest-aside.png', :style => 'opacity:1 ;'%>
+        <% end %>
+        
+        
+        <a href="#">Manage Content</a>
+        <!-- <span class="date">June 30, 2012</span> -->
+      </li>
+    </ul>
+
+  </div>
+</article>

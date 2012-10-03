@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928150533) do
+ActiveRecord::Schema.define(:version => 20121003023647) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -25,9 +25,32 @@ ActiveRecord::Schema.define(:version => 20120928150533) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "pictures", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.string   "original_image_url"
+    t.string   "index_image_url"
+    t.string   "dashboard_image_url"
+    t.string   "assembly_url"
+    t.boolean  "is_resizing_completed", :default => false
+    t.integer  "width"
+    t.integer  "height"
+    t.boolean  "is_deleted",            :default => false
+    t.boolean  "is_main_picture",       :default => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
+
   create_table "projects", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.boolean  "is_deleted",                 :default => false
+    t.boolean  "is_published",               :default => false
+    t.datetime "first_publication_datetime"
+    t.boolean  "has_ever_been_published",    :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "roles", :force => true do |t|

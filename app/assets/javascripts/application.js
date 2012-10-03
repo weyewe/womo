@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require modernizr
+//= require bootstrap
+//= require jquery.showLoading.min
+//= require utility
+//= require script 
+ 

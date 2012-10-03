@@ -1,8 +1,32 @@
-<section class="span9 alignright testimonials" id="page">
+
+<section class="span9 alignright testimonials" id="content"> 
+  <div class='span9' style="margin-left:0; margin-bottom:30px;">
+    <div> 
+      <a class="btn btn-success btn-large">
+        <i class="icon-plus icon-white"></i>
+        Create Project
+      </a>
+    </div>
+    
+    <br />
+    
+    <%= render :partial => "projects/new_object_form", :locals => {
+      :new_object => Project.new,
+      :url => projects_url 
+    }%>
+    
+    
+  </div>
+    
+    
+    
+
+    
+     
 
   <% array = [
     {
-      :pic => 'http://www.axioo.com/files/blog/hendry_cindythia.jpg',
+      :pic => 'http://cheesenclick.com/wp-content/uploads/2012/06/DSC_0220(pp_w900_h599).jpg',
       :teaser => "Perfection is in the eyes of God."
     },
     {
@@ -32,7 +56,14 @@
       :teaser => 'test'
     }  
   ]%>
-  
+   
+   
+  <% projects.each do |project| %>
+    <%= render :partial => "projects/project_dashboard_entry", :locals => {
+      :project => project
+    } %>
+  <% end %> 
+   
   
   <% array.each do |element| %>
     <article class='row'> 
@@ -43,7 +74,7 @@
         <%=  element[:teaser]%>
       </div>
     </article>
-  <% end %>
+  <% end %> 
   
    
  

@@ -1,0 +1,42 @@
+$(document).ready(function(){
+  jQuery('.prevent_double_submit').preventDoubleSubmit();
+  
+  // project creation
+  
+  
+  $(".ajax-form").live("submit", function(){
+    var $form = $(this);  
+    $form.showLoading();
+
+    $.ajax({
+      url: $form.attr("action"),
+      type: "POST",
+      data: $form.serialize(),
+      dataType: 'script',
+      success: function(response){
+        // 
+        // $form.clearForm();
+        // $entry_link.hideLoading();
+      }
+    });
+    
+    return false ; 
+  });
+  
+  
+  $(".form_opener, .form_closer").click(function(){
+    //  open the form 
+    $("form.no_content_form").toggle();
+    
+    // hide the no_object_list notification 
+    $("#no_object_list").toggle();
+    
+    // if it is the edit mode 
+    $("#display_content").toggle() ;
+    return false;
+  });
+  
+  
+  
+  
+});

@@ -7,3 +7,4 @@ USER_ROLE = {
   :admin => "Admin"
 }
 
+SHOWLOADING_LOADER_URL = "http://s3.amazonaws.com/circle-static-assets/loading.gif"

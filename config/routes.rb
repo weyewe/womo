@@ -4,6 +4,8 @@ Womo::Application.routes.draw do
   root :to => 'home#index'
   match 'dashboard' => "home#dashboard" , :as => :dashboard
   
-  resources :projects 
+  resources :projects  do 
+    resources :pictures 
+  end
   resources :bookmarks 
 end

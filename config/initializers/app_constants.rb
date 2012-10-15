@@ -59,5 +59,8 @@ BACKEND_IMAGE_URL = {
   :glyphicons_halflings => 'http://s3.amazonaws.com/wilpot-asset/skin-default/glyphicons-halflings.png',
   
   :footer_bg => 'http://s3.amazonaws.com/wilpot-asset/skin-default/footer-bg.jpg',
-  :footer_divider => 'http://s3.amazonaws.com/wilpot-asset/skin-default/footer-divider.png'
+  :footer_divider => 'http://s3.amazonaws.com/wilpot-asset/skin-default/footer-divider.png',
+  
+  :features_1 => 'http://s3.amazonaws.com/wilpot-asset/skin-default/features-1.png',
+  :box_bg => 'http://s3.amazonaws.com/wilpot-asset/skin-default/box-bg.png', 
 }

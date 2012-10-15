@@ -1,0 +1,25 @@
+$(document).ready(function(){ 
+  
+  
+  // the object 
+  var $wrapper = $("#entry-<%= @project.id %>");
+  $wrapper.hideLoading();  
+  
+  <% new_row = escape_javascript( render :partial => "projects/object_list_entry", :locals => {
+    :project => @project 
+  }) %>
+
+  $("#entry-<%= @project.id %>").replaceWith('<%= new_row %>');
+  
+  $('#toggler-<%=  @project.id %>').toggleButtons({ 
+    label: {
+      enabled: "PUBLISH",
+      disabled: "Draft"
+    },
+    width: 200,
+    onChange: function ($el, status, e) {
+      executeToggling( $el.parents(".toggler").attr("id") , status ); 
+    }
+  });
+  
+});

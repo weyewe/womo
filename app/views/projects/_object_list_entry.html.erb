@@ -1,4 +1,4 @@
-<article class='row dashboard_project_entry' > 
+<article class='row dashboard_project_entry' id='entry-<%= project.id %>' > 
   <div class='span6' style='overflow:hidden; max-height:500px;'>
   
     <% if project.main_picture.nil? %>
@@ -31,38 +31,58 @@
     </div>
     
 
-    <ul class="latest-post post-statistic">
-      <!-- <li class="clearfix">
-        <%#= image_tag 'post-format/latest-video.png', :style => 'opacity:1 ;'%>
-        <a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a>
-        <span class="date">June 30, 2012</span>
-      </li>
-      <li class="clearfix">
-        <%#= image_tag 'post-format/latest-standart.png', :style => 'opacity:1 ;'%>
-        <a href="#">Lorem ipsum dolor sit amet</a>
-        <span class="date">June 30, 2012</span>
-      </li> -->
+    <ul class="latest-post post-statistic"> 
       <li class="clearfix">
         <%= link_to new_project_picture_url(project) do %>
            <%= image_tag 'post-format/latest-gallery.png', :style => 'opacity:1 ;'%>
         <% end %>
        
-        <a href="#">Manage Pictures</a>
-        <span class="date"><%= project.content_pictures.count %> pictures</span>
+       
+        <div style='margin-left:65px;'>
+          <%= link_to "Manage Pictures", new_project_picture_url(project)  %> 
+          <span class="date"><%= project.content_pictures.count %> pictures</span>
+          <span class="date"><%= project.current_main_pictures.count %> teaser</span>
+        </div>
+        
+        
+        
       </li>
-      <!-- <li class="clearfix">
-           <%= image_tag 'post-format/latest-quote.png', :style => 'opacity:1 ;'%>
-           <a href="#">Lorem ipsum dolor sit amet adipiscing</a>
-           <span class="date">June 30, 2012</span>
-         </li> -->
+     
       <li class="clearfix">
         
         <%= link_to edit_project_content_url(project) do %>
            <%= image_tag 'post-format/latest-aside.png', :style => 'opacity:1 ;'%>
         <% end %>
         
+        <div style='margin-left:65px;'>
+          <%= link_to "Manage Content", edit_project_content_url(project) %>  
+          <span class="date">
+            Title: 
+            <% if  not project.title.nil? and project.title.length != 0 %>
+              <i class="icon-ok-sign" style='background-color: #DFF0D8'></i> 
+            <% else %>
+              <i class="icon-exclamation-sign"  style='background-color: #F2DEDE'></i> 
+            <% end %>
+          </span>
+          <span class="date">
+            Teaser: 
+            <% if  not project.teaser.nil? and project.teaser.length != 0 %>
+              <i class="icon-ok-sign"  style='background-color: #DFF0D8'></i> 
+            <% else %>
+              <i class="icon-exclamation-sign"  style='background-color: #F2DEDE'></i> 
+            <% end %>
+          </span>
+          <span class="date">
+            Story: 
+            <% if  not project.description.nil? and project.description.length != 0 %>
+              <i class="icon-ok-sign" style='background-color: #DFF0D8'></i> 
+            <% else %>
+              <i class="icon-exclamation-sign"  style='background-color: #F2DEDE'></i> 
+            <% end %>
+          </span>
+        </div>
         
-        <%= link_to "Manage Content", edit_project_content_url(project) %>  
+        
       </li>
       
       <li class="clearfix">
@@ -71,17 +91,24 @@
            <%= image_tag 'post-format/gallery-hover.png', :style => 'opacity:1 ;'%>
         <% end %>
         
+        <div style='margin-left:65px;'>
+          <%= link_to "Featured Picture", manage_featured_project_url(project) %> 
+          <span class="date"><%= project.featured_pictures.count %> pictures</span>
+          <span class="date"><%= project.current_displayed_featured_pictures.count %> featured</span> 
+        </div>
         
-        <%= link_to "Featured Picture", manage_featured_project_url(project) %> 
-        <span class="date"><%= project.featured_pictures.count %> pictures</span>
       </li>
     </ul>
     
     <br />
     <h4>Publication Status</h4>
     
-    <div  id='toggler-<%=  project.id %>' class='project-publish-button'>
-      <input type="checkbox">
+    <div  id='toggler-<%=  project.id %>' class='project-publish-button toggler'> 
+      <% if project.is_published == true %>
+        <input type="checkbox" class='toggle-checkbox' checked='checked'>
+      <% else %>
+        <input type="checkbox" class='toggle-checkbox'>
+      <% end %>
     </div>
 
 

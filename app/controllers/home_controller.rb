@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:index]
   def index
+    @projects = Project.where(:is_published => true ).order("first_publication_datetime DESC")
   end
   
   def dashboard

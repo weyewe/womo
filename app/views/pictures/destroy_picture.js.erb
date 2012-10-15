@@ -1,7 +1,7 @@
 $(document).ready(function(){
-   $("#pic_entry-<%= @picture.id %>").hideLoading();
+   $("#entry-<%= @picture.id %>").hideLoading();
    
   <% if @picture.is_deleted == true %> 
-    $("#pic_entry-<%= @picture.id %>").remove(); 
+    $("#entry-<%= @picture.id %>").remove(); 
   <% end %>
 });

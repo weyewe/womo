@@ -2,6 +2,7 @@
   :title => "Project",
   :description => "Edit Featured Status and Upload Featured Picture"
 } %> 
+<%= create_breadcrumb(@breadcrumbs).html_safe %>
 
  
 
@@ -119,7 +120,12 @@
 
 
 <!-- form to trigger the featured pic -->
-
+<div class=" hidden" id="trigger_switch">
+  <%= form_for Picture.new, :url => switch_featured_url   do |f| %>
+    <%= hidden_field_tag 'entity_switch_id' , ''  %> 
+    <%= hidden_field_tag 'action_value', '' %>
+  <% end %>
+</div>
 
 
 

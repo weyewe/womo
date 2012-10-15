@@ -1,4 +1,4 @@
-<article class='row dashboard_project_entry' id="pic_entry-<%= picture.id %>"> 
+<article class='row dashboard_project_entry' id="entry-<%= picture.id %>"> 
   <div class='span6'>
   
       <%= image_tag picture.dashboard_image_url %> 
@@ -15,8 +15,12 @@
     
     <br />
     <h4>Featured?</h4>
-    <div  id='toggler-<%=  picture.id %>' class='pic-toggle-button'>
-      <input type="checkbox">
+    <div  id='toggler-<%=  picture.id %>' class='pic-toggle-button toggler'>
+      <% if picture.is_feature_picture_displayed == true %>
+        <input type="checkbox" class='toggle-checkbox' checked='checked'>
+      <% else %>
+        <input type="checkbox" class='toggle-checkbox'>
+      <% end %>
     </div>
     
     

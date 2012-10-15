@@ -3,6 +3,10 @@ class PicturesController < ApplicationController
     @project = Project.find_by_id params[:project_id]
     @new_picture = @project.pictures.new 
     @pictures = @project.pictures.where(:is_deleted => false , :is_feature_picture => false ).order("name ASC")
+    
+    add_breadcrumb "Portfolio", 'projects_url'
+    set_breadcrumb_for @project, 'new_project_picture_url' + "(#{@project.id})", 
+                "Manage Pictures"
   end
   
   def create_picture_from_assembly
@@ -73,8 +77,16 @@ class PicturesController < ApplicationController
     @other_current_picture_id_list = @picture.other_current_main_pictures.map{|x| x.id }
     
     @picture.switch_teaser( params[:action_value].to_i )
-    @other_current_picture_list = Picture.where(:id => @other_current_picture_id_list)
+    @other_current_picture_list = Picture.where(:id => @other_current_picture_id_list) 
+  end
+  
+  def switch_featured
+    @picture = Picture.find_by_id params[:entity_switch_id]
     
+    @other_displayed_featured_picture_id_list = @picture.other_featured_pictures.map{|x| x.id }
+    
+    @picture.switch_featured( params[:action_value].to_i )
+    @other_displayed_featured_picture_list = Picture.where(:id => @other_displayed_featured_picture_id_list)
   end
   
 end

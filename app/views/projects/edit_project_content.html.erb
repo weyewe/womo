@@ -4,6 +4,9 @@
 } %> 
 
 
+<%= create_breadcrumb(@breadcrumbs).html_safe %>
+
+
 <div class="row">
   <!-- render the page -->
   <!-- START OF THE DASHBOARD PAGE  -->
@@ -12,6 +15,7 @@
    <div class='span9' id='project_form_wrapper' style="margin-left:0; margin-bottom:30px;" >
      <div class='row'>
        <div class='span6'>
+         <h3 id='form_header'>Project Content</h3>
           <%= render :partial => "projects/edit_object_form", :locals => {
             :object => @project,
             :url => update_project_content_url(@project)

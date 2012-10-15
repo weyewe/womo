@@ -1,7 +1,12 @@
+
+
 <%= render :partial => "layouts/dashboard_guide", :locals => {
   :title => "Picture",
   :description => "Upload/Delete Picture"
 } %> 
+
+
+<%= create_breadcrumb(@breadcrumbs).html_safe %>
 
 
 <div class="row">

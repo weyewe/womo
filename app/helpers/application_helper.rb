@@ -12,6 +12,55 @@ module ApplicationHelper
   
   
 =begin
+  CREATE BREADCRUMBS 
+=end
+  def create_breadcrumb(breadcrumbs)
+    
+    if (  breadcrumbs.nil? ) || ( breadcrumbs.length ==  0) 
+      # no breadcrumb. don't create 
+    else
+      breadcrumbs_result = ""
+      breadcrumbs_result << "<ul class='breadcrumb'>"
+      
+      
+      
+      breadcrumbs[0..-2].each do |txt, path|
+        breadcrumbs_result  << create_breadcrumb_element(    link_to( txt, path ) ) 
+      end 
+      
+      
+      last_text = breadcrumbs.last.first
+      last_path = breadcrumbs.last.last
+      breadcrumbs_result << create_final_breadcrumb_element( link_to( last_text, last_path)  )
+      breadcrumbs_result << "</ul>"
+      return breadcrumbs_result
+    end
+    
+    
+  end
+  
+  def create_breadcrumb_element( link ) 
+    element = ""
+    element << "<li>"
+    element << link
+    element << "<span class='divider'>/</span>"
+    element << "</li>"
+    
+    return element 
+  end
+  
+  def create_final_breadcrumb_element( link )
+    element = ""
+    element << "<li class='active'>"
+    element << link 
+    element << "</li>"
+    
+    return element
+  end
+  
+  
+  
+=begin
   TRANSLOADIT
 =end
   def transloadit_with_max_size( template , size_mb )
@@ -165,6 +214,14 @@ module ApplicationHelper
           {
             :controller => "pictures",
             :action => "new"
+          },
+          {
+            :controller => 'projects',
+            :action => 'manage_featured_project'
+          },
+          {
+            :controller => "projects",
+            :action => "edit_project_content"
           }
         ]
       },

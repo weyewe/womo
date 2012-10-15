@@ -27,4 +27,8 @@ Womo::Application.routes.draw do
   # picture 
   match 'destroy_picture' => 'pictures#destroy_picture', :as => :destroy_picture, :method => :post 
   match 'switch_teaser' => "pictures#switch_teaser", :as => :switch_teaser, :method => :post 
+  
+  match 'switch_featured' => "pictures#switch_featured", :as => :switch_featured, :method => :post 
+  
+  match 'publish' => 'projects#publish', :as => :publish, :method => :post 
 end

@@ -98,6 +98,25 @@ class Picture < ActiveRecord::Base
   end
   
   
+  def other_featured_pictures
+    current_pic = self 
+    self.project.current_displayed_featured_pictures.where{ id.not_eq current_pic.id }
+  end
+  
+  def switch_featured(  value )
+    if value.to_i == TRUE_CHECK
+      self.other_featured_pictures.each do |pic|
+        pic.is_feature_picture_displayed = false
+        pic.save
+      end
+      self.is_feature_picture_displayed = true 
+      self.save 
+    else
+      self.is_feature_picture_displayed = false
+      self.save
+    end
+  end
+  
   
   
 end

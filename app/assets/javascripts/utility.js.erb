@@ -58,7 +58,7 @@ function executeToggling( toggle_button_id, status ){
   var id = $toggle_button.attr("id").split('-')[1];
   
   var $form = $("#trigger_switch form");
-  var $wrapper = $("#pic_entry-" + id);  
+  var $wrapper = $("#entry-" + id);  
   
   $("#entity_switch_id").attr("value", id);
   
@@ -79,4 +79,10 @@ function executeToggling( toggle_button_id, status ){
       $form.clearForm();  
     }
   });
+}
+
+function removeElementWithID(element_id){
+  var $element = $("#" + element_id );
+  $element.fadeOut();
+  $element.remove(); 
 }

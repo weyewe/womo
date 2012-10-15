@@ -1,7 +1,7 @@
 $(document).ready(function(){ 
   // refreshing the other
-  <% @other_current_picture_list.each do |picture| %>
-    <% new_row = escape_javascript( render :partial => "pictures/entry", :locals => {
+  <% @other_displayed_featured_picture_list.each do |picture| %>
+    <% new_row = escape_javascript( render :partial => "pictures/featured_entry", :locals => {
       :picture => picture 
     }) %>
 
@@ -26,7 +26,7 @@ $(document).ready(function(){
   var $wrapper = $("#entry-<%=  @picture.id %>");
   $wrapper.hideLoading();  
   
-  <% new_row = escape_javascript( render :partial => "pictures/entry", :locals => {
+  <% new_row = escape_javascript( render :partial => "pictures/featured_entry", :locals => {
     :picture => @picture 
   }) %>
 

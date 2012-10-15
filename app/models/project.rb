@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :title, :description
+  attr_accessible :title, :teaser, :description
   has_many :pictures
   
   validates_presence_of :title 
@@ -17,6 +17,23 @@ class Project < ActiveRecord::Base
     new_object.save 
 
     return new_object
+  end
+  
+  def update_object( current_user, object_params )    
+    self.assign_attributes( object_params ) 
+    if not current_user.has_role?(:vendor) 
+      return self 
+    end
+     
+    if self.title.nil? or self.title.length == 0 
+      self.errors.add(:title , "The title can't be empty" ) 
+      return self 
+    end
+    self.save 
+    
+    
+
+    return self
   end
   
   
@@ -49,7 +66,27 @@ class Project < ActiveRecord::Base
   end
   
   def featured_pictures
-    self.pictures.where(:is_deleted => false,:is_feature_picture => true )
+    self.pictures.where(:is_deleted => false,:is_feature_picture => true , :is_feature_picture_displayed => false )
+  end
+  
+  def current_displayed_featured_pictures
+    self.pictures.where(:is_deleted => false,:is_feature_picture => true, :is_feature_picture_displayed =>true  )
+  end
+
+
+  def publish 
+    if self.is_published == false  
+      if self.has_ever_been_published == false
+        self.has_ever_been_published = true 
+        self.first_publication_datetime = DateTime.now  
+      end
+      self.is_published = true 
+    else
+      self.is_published = false 
+    end
+    
+    self.save 
+    
   end
   
 end

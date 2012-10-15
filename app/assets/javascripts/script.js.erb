@@ -45,62 +45,11 @@ $(document).ready(function(){
     },
     width: 200,
     onChange: function ($el, status, e) {
-        // $el = $('#toggle-button'); 
-        // status = [true, false], the value of the checkbox
-        // e = the event
-        if( status == true ){
-          console.log("The status is true");
-        }else if(status==false){
-          console.log("The status is false");
-        }
-        // console.log($el, status, e); 
-      // fire the data to the server
-      //  switch all other main display status as false, return to the 
-      // browser to toggle all the button
-      // hide showLoading 
+      console.log("ON change!!!!");
+      executeToggling( $el.parents(".toggler").attr("id") , status ); 
     }
   });
-  
-  $('.project-featured-button').toggleButtons({ 
-    label: {
-      enabled: "YES",
-      disabled: "NO"
-    },
-    width: 150,
-    onChange: function ($el, status, e) {
-        // $el = $('#toggle-button'); 
-        // status = [true, false], the value of the checkbox
-        // e = the event
-        
-        
-         
-         var id = $(this).attr("id").split('-')[1];
-         var $form = $("#trigger_switch form");
-         var $wrapper = $("#pic_entry-" + id);  
-         
-         $("#entity_id").attr("value", id);
-          
-         if( status == true ){
-           $("#action_value").attr("value", '<%= TRUE_CHECK');
-         }else if(status==false){
-           $("#action_value").attr("value", '<%= FALSE_CHECK');
-         }
-         
-         $wrapper.showLoading(); 
-
-         $.ajax({
-           url: $form.attr("action"),
-           type: "POST",
-           data: $form.serialize(),
-           dataType: 'script',
-           success: function(response){
-             $form.clearForm(); 
-           }
-         }); 
-
-         
-    }
-  });
+   
   
   
   $('.pic-toggle-button').toggleButtons({ 
@@ -110,6 +59,7 @@ $(document).ready(function(){
     },
     width: 150,
     onChange: function ($el, status, e) {  
+    
       executeToggling( $el.parents(".toggler").attr("id") , status ); 
     }
   });
@@ -123,7 +73,7 @@ $(document).ready(function(){
     var $form = $("#trigger_delete form");
     $("#entity_id").attr("value", id);
     
-    var $wrapper = $("#pic_entry-" + id); 
+    var $wrapper = $("#entry-" + id); 
     
     var filename = $(".project-description", $wrapper).text();
     

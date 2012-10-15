@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   has_many :pictures
   
   validates_presence_of :title 
+  belongs_to :category
   
 =begin
   Object Creation

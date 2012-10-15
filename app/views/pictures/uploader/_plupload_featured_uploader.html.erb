@@ -1,0 +1,13 @@
+<%= form_for @new_picture, :url => TRANSLOADIT_UPLOAD_URL , :method => :post,  
+            :html => {:class=> " no_content_form"   }  do |f| %> 
+  <% tranloadit_array = transloadit_with_max_size('featured_page_image_store', 100) %>
+  <%= hidden_field_tag 'params',  tranloadit_array[0]  %>
+  <%= hidden_field_tag 'signature',  tranloadit_array[1]  %>
+  <%= hidden_field_tag 'wait',  TRANSLOADIT_WAIT   %>
+
+   
+	
+	<div id="uploader">
+		<p>Try to install Firefox or Chrome or Safari.</p>
+	</div> 
+<% end %>

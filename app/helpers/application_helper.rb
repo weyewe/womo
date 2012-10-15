@@ -74,22 +74,7 @@ module ApplicationHelper
     end 
   end
   
-  def create_process_nav( process_list, params )
-      #   
-      # <!-- .widget -->
-      # <div class="widget">
-      #   <h3 class="title">VENDOR</h3>
-      # 
-      #   <ul class="categories">
-      #     <li>
-      #       <%= link_to "Portfolio", projects_url %> 
-      #     </li>
-      #     <li class="current"><a href="./team.html">Collaboration</a></li>
-      #     <li><a href="./testimonials.html">Testimonial</a></li>
-      #   </ul>
-      # </div><!-- /.widget -->
-      # 
-    
+  def create_process_nav( process_list, params ) 
      result = ""
      result << "<div class='widget''>"
      result << "<h3 class='title'>"  + 
@@ -171,7 +156,7 @@ module ApplicationHelper
     :processes => [
       {
         :title =>  "Portfolio",
-        :destination_link => 'root_url',
+        :destination_link => 'projects_url',
         :conditions => [
           {
             :controller => 'projects',

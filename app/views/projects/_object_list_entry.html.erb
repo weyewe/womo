@@ -1,5 +1,5 @@
 <article class='row dashboard_project_entry' > 
-  <div class='span6'>
+  <div class='span6' style='overflow:hidden; max-height:500px;'>
   
     <% if project.main_picture.nil? %>
       <%#= image_tag 'upload_images_prompt.jpg' %>
@@ -57,15 +57,34 @@
          </li> -->
       <li class="clearfix">
         
-        <%= link_to 'root_url' do %>
+        <%= link_to edit_project_content_url(project) do %>
            <%= image_tag 'post-format/latest-aside.png', :style => 'opacity:1 ;'%>
         <% end %>
         
         
-        <a href="#">Manage Content</a>
+        <%= link_to "Manage Content", edit_project_content_url(project) %> 
+        <!-- <span class="date">June 30, 2012</span> -->
+      </li>
+      
+      <li class="clearfix">
+        
+        <%= link_to manage_featured_project_url(project) do %>
+           <%= image_tag 'post-format/gallery-hover.png', :style => 'opacity:1 ;'%>
+        <% end %>
+        
+        
+        <%= link_to "Featured Project", manage_featured_project_url(project) %> 
         <!-- <span class="date">June 30, 2012</span> -->
       </li>
     </ul>
+    
+    <br />
+    <h4>Publication Status</h4>
+    
+    <div  id='toggler-<%=  project.id %>' class='project-publish-button'>
+      <input type="checkbox">
+    </div>
+
 
   </div>
 </article>

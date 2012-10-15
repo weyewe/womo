@@ -1,5 +1,5 @@
-COMPANY_NAME = "WonderMoment"
-COMPANY_MOTO = "Every moment counts"
+COMPANY_NAME = "William Photography"
+COMPANY_MOTO = "One shoot. One moment. One love"
 
 USER_ROLE = {
   :basic => 'Basic',  # the basic role -> can do product enquiry , post in discussion 
@@ -25,3 +25,14 @@ PLUPLOAD_ASSET_URL = {
 
 PLUPLOAD_SWF_URL = 'http://s3.amazonaws.com/circle-static-assets/PLUPLOAD_UPLOADER/plupload.flash.swf'
 PLUPLOAD_SILVERLIGHT_XAP_URL = 'http://s3.amazonaws.com/circle-static-assets/PLUPLOAD_UPLOADER/plupload.silverlight.xap'
+TRANSLOADIT_WAIT = 1 
+TRANSLOADIT_NO_WAIT = 0 
+
+TRUE_CHECK = 1
+FALSE_CHECK = 0
+
+UPLOAD_FILE_STATUS = {
+  :uploaded => 1,
+  :resized => 2, 
+  :saved => 3 
+}

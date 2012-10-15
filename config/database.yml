@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: womo_dev
+  database: potolog_dev
   pool: 5
   username: weyewe
 
@@ -40,13 +40,13 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: womo_dev
+  database: potolog_test
   pool: 5
   username: weyewe
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: womo_dev
+  database: potolog_production
   pool: 5
   username: weyewe

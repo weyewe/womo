@@ -16,7 +16,7 @@ $(document).ready(function(){
       success: function(response){
         // 
         // $form.clearForm();
-        // $entry_link.hideLoading();
+        $form.hideLoading();
       }
     });
     
@@ -24,7 +24,7 @@ $(document).ready(function(){
   });
   
   
-  $(".form_opener, .form_closer").click(function(){
+  $(".form_opener, .form_closer").live('click', function(){
     //  open the form 
     $(".no_content_form").toggle();
     
@@ -37,11 +37,60 @@ $(document).ready(function(){
   });
   
   
+  
+  $(".project-publish-button").toggleButtons({ 
+    label: {
+      enabled: "PUBLISH",
+      disabled: "Draft"
+    },
+    width: 200,
+    onChange: function ($el, status, e) {
+        // $el = $('#toggle-button'); 
+        // status = [true, false], the value of the checkbox
+        // e = the event
+        if( status == true ){
+          console.log("The status is true");
+        }else if(status==false){
+          console.log("The status is false");
+        }
+        // console.log($el, status, e); 
+      // fire the data to the server
+      //  switch all other main display status as false, return to the 
+      // browser to toggle all the button
+      // hide showLoading 
+    }
+  });
+  
+  $('.project-featured-button').toggleButtons({ 
+    label: {
+      enabled: "YES",
+      disabled: "NO"
+    },
+    width: 150,
+    onChange: function ($el, status, e) {
+        // $el = $('#toggle-button'); 
+        // status = [true, false], the value of the checkbox
+        // e = the event
+        if( status == true ){
+          console.log("The status is true");
+        }else if(status==false){
+          console.log("The status is false");
+        }
+        // console.log($el, status, e); 
+      // fire the data to the server
+      //  switch all other main display status as false, return to the 
+      // browser to toggle all the button
+      // hide showLoading 
+    }
+  });
+  
+  
   $('.pic-toggle-button').toggleButtons({ 
     label: {
-      enabled: "MAIN",
-      disabled: "OFF"
+      enabled: "TEASER",
+      disabled: "CONTENT"
     },
+    width: 150,
     onChange: function ($el, status, e) {
         // $el = $('#toggle-button'); 
         // status = [true, false], the value of the checkbox

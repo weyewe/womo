@@ -1,0 +1,73 @@
+<%= render :partial => "layouts/dashboard_guide", :locals => {
+  :title => "Project",
+  :description => "Edit Portfolio Entry Content"
+} %> 
+
+
+<div class="row">
+  <!-- render the page -->
+  <!-- START OF THE DASHBOARD PAGE  -->
+  <section class="span9 alignright testimonials" id="object_list"> 
+   
+   <div class='span9' id='project_form_wrapper' style="margin-left:0; margin-bottom:30px;" >
+     <div class='row'>
+       <div class='span6'>
+          <%= render :partial => "projects/edit_object_form", :locals => {
+            :object => @project,
+            :url => update_project_content_url(@project)
+          }%>
+       </div>
+       <div class='span2'>
+         <h3 style='text-align:center;'>
+           Category 
+          </h3>
+         <table cellpadding="0" cellspacing="0" border="0" 
+               class="table table-striped table-bordered" id="stat" style="margin-top:10px;"> 
+             <tbody>
+               <tr>
+                 <td style='font-weight:bold;'>Prewedding</td>
+                 <td  id="selected_counter">0</td>
+               </tr>
+             
+               <tr>
+                 <td style='font-weight:bold;'>
+                   Wedding
+                 </td>
+                 <td>
+                   <span id="uploaded_counter">0</span>
+                 </td>
+               </tr>
+               
+               <tr>
+                 <td style='font-weight:bold;'>
+                   Family Picture
+                 </td>
+                 <td>
+                   <span id="processed_counter">0</span>
+                 </td>
+               </tr>
+               
+               <tr>
+                 <td style='font-weight:bold;'>
+                   Baby Picture
+                 </td>
+                 <td>
+                   <span id="failed_counter">0</span>
+                   
+                 </td>
+               </tr> 
+             </tbody>
+         </table> 
+       </div>
+     </div>
+   </div>
+ 
+     
+  </section>
+  
+  <!-- END OF THE DASHBOARD PAGE  -->
+  <!-- render the process list -->
+  <%= render :partial => 'layouts/process_nav'%>
+</div>
+
+

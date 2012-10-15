@@ -1,0 +1,21 @@
+<h3>Project Content</h3>
+<%= simple_form_for( object , :url => url,
+      :method => :post , 
+      :html => {:class => "form-vertical prevent_double_submit ajax-form  ",
+        :id => "edit_object"}) do |f| %>
+
+  <%= f.input :title  , :input_html => {:class => "input-xlarge span5"}, 
+  :label => "Title" %>
+
+
+  <%= f.input :teaser , :input_html => {:class => "input-xlarge span5", :rows => 5}, 
+  :label => "Teaser" %>
+  
+  <%= f.input :description , :input_html => {:class => "input-xlarge span5", :rows => 5}, 
+  :label => "Story" %>
+  
+
+  <div class="form-actions">
+    <%= f.button :submit , :class => "btn btn-primary", :value=> "Update Project" %> 
+  </div>
+<% end %>

@@ -23,33 +23,54 @@ class Picture < ActiveRecord::Base
     
     
     
-    transloadit_params = ActiveSupport::HashWithIndifferentAccess.new(
-          ActiveSupport::JSON.decode content
-        )
-        
-    while transloadit_params[:ok] != "ASSEMBLY_COMPLETED"
-      sleep 2
-      puts "in the loop"
-      content = open(self.assembly_url).read
-      transloadit_params = ActiveSupport::HashWithIndifferentAccess.new(
-            ActiveSupport::JSON.decode content
-          )
+    # transloadit_params = ActiveSupport::HashWithIndifferentAccess.new(
+    #           ActiveSupport::JSON.decode content
+    #         )
+    #         
+    #     while transloadit_params[:ok] != "ASSEMBLY_COMPLETED"
+    #       sleep 2
+    #       puts "in the loop"
+    #       content = open(self.assembly_url).read
+    #       transloadit_params = ActiveSupport::HashWithIndifferentAccess.new(
+    #             ActiveSupport::JSON.decode content
+    #           )
+    #     end
+    
+    self.parse_transloadit( content , FALSE_CHECK)
+    
+    
+      
+  end
+  
+  def parse_transloadit( params , is_featured_check) 
+   
+    self.original_image_url  = params['results'][':original']['0']['url'] 
+    self.index_image_url     = params['results']['resize_index']['0']['url']    
+    self.dashboard_image_url  =  params['results']['resize_dashboard']['0']['url']   
+    puts "THe url is done\n"*10 
+    
+    self.original_image_size = params['results'][':original']['0']['size']  
+    self.index_image_size    = params['results']['resize_index']['0']['size']        
+    self.dashboard_image_size = params['results']['resize_dashboard']['0']['size']       
+    puts "THe image size is done\n"*10
+    
+    if is_featured_check == TRUE_CHECK
+      self.feature_image_url = params['results']['resize_featured']['0']['url']   
+      self.feature_image_size = params['results']['resize_featured']['0']['size']       
+      self.is_feature_picture = true         
     end
-
-    self.original_image_url  = transloadit_params[:results][':original'].first[:url]
-    self.index_image_url     = transloadit_params[:results][:resize_index].first[:url]   
-    self.dashboard_image_url  = transloadit_params[:results][:resize_dashboard].first[:url]  
     
-    self.original_image_size = transloadit_params[:results][':original'].first[:size]
-    self.index_image_size    = transloadit_params[:results][:resize_index].first[:size]         
-    self.dashboard_image_size = transloadit_params[:results][:resize_dashboard].first[:size]     
     
-    self.name                = transloadit_params[:results][':original'].first[:name] 
-    self.is_resizing_completed        = true
-     
+    puts "Extracting name is done\n"*10
+    self.name                =  params['results'][':original']['0']['name']  
+    
+    if not self.assembly_url.nil?
+      self.is_resizing_completed = true
+    end
+    
+    
     
     self.save
-      
   end
   
   

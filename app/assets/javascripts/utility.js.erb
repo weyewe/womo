@@ -20,3 +20,25 @@ $.fn.clearForm = function() {
       this.selectedIndex = -1;
   });
 };
+
+
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
+// 
+// // Remove the second item from the array
+// array.remove(1);

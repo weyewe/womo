@@ -19,3 +19,9 @@
 //= require utility
 //= require script 
  
+
+selected_counter = 0 ;
+uploaded_counter = 0;
+processed_counter = 0 ;
+failed_counter  = 0 ;
+uploaded_file_list = [] ;

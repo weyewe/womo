@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121003070528) do
+ActiveRecord::Schema.define(:version => 20121011042950) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(:version => 20121003070528) do
   end
 
   create_table "bookmarks", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -47,27 +53,34 @@ ActiveRecord::Schema.define(:version => 20121003070528) do
     t.string   "original_image_url"
     t.string   "index_image_url"
     t.string   "dashboard_image_url"
+    t.string   "feature_image_url"
     t.integer  "original_image_size"
     t.integer  "index_image_size"
     t.integer  "dashboard_image_size"
+    t.string   "feature_image_size"
     t.string   "assembly_url"
-    t.boolean  "is_resizing_completed", :default => false
+    t.boolean  "is_resizing_completed",        :default => false
     t.integer  "width"
     t.integer  "height"
-    t.boolean  "is_deleted",            :default => false
-    t.boolean  "is_main_picture",       :default => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.boolean  "is_deleted",                   :default => false
+    t.boolean  "is_main_picture",              :default => false
+    t.boolean  "is_feature_picture",           :default => false
+    t.boolean  "is_feature_picture_displayed", :default => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
   create_table "projects", :force => true do |t|
     t.string   "title"
+    t.text     "teaser"
     t.text     "description"
+    t.boolean  "is_featured_project",        :default => false
     t.integer  "user_id"
     t.boolean  "is_deleted",                 :default => false
     t.boolean  "is_published",               :default => false
     t.datetime "first_publication_datetime"
     t.boolean  "has_ever_been_published",    :default => false
+    t.integer  "category_id"
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
   end

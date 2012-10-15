@@ -5,4 +5,4 @@ auth:
 
 templates:
   neopilipoto_image_store : '35a23f641fa441889d367b784cb304f6'
-  neopilipoto_circle_front_page : '0b7cd4633d4148b2a703f2adbdc3460c'
+  featured_page_image_store : 'e41e3c607356484e83bc2d15f2d47aaf'

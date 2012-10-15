@@ -40,4 +40,16 @@ class PicturesController < ApplicationController
     end
   end
   
+  
+  def create_featured_picture
+    @project = Project.find_by_id( params[:project_id])
+    @picture = Picture.create 
+    @picture.project_id = @project.id 
+    @picture.save 
+     
+        
+    @picture.parse_transloadit( params , TRUE_CHECK) 
+    
+  end
+  
 end

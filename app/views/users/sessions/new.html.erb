@@ -12,34 +12,34 @@
             <div class='row features' style='margin-bottom:30px;'>
               <div class="span3">
                 <div class="box">
-                  <h4>MenaraLighthouse</h4>
+                  <h4>Amazon S3</h4>
                   <%= image_tag  BACKEND_IMAGE_URL[:features_1]  %> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+                  <p>Ensures Fast Image Delivery</p>
                 </div>
               </div>
 
               <div class="span3">
                 <div class="box">
-                  <h4>MONO</h4>
+                  <h4>Heroku</h4>
                    <%= image_tag  BACKEND_IMAGE_URL[:features_1]  %> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+                  <p>Scalable and Rapid Deployment</p>
                 </div>
               </div>
             </div>
             <div class='row features'>
               <div class="span3">
                 <div class="box">
-                  <h4>ForEachLove</h4>
+                  <h4>Ruby on Rails</h4>
                    <%= image_tag BACKEND_IMAGE_URL[:features_1]  %> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+                  <p>Easily Customizable</p>
                 </div>
               </div>
 
               <div class="span3">
                 <div class="box">
-                  <h4>Cheese 'n Click</h4>
+                  <h4>Transloadit</h4>
                    <%= image_tag BACKEND_IMAGE_URL[:features_1]  %> 
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+                  <p>Rapid Image Resizing</p>
                 </div>
               </div>
             </div> 
@@ -61,7 +61,10 @@
                  <%= f.button :submit, "Login" %>
                </div>
              <% end %>
-            
+
+             <div class="alert">
+               <strong>Not an admin?</strong> Click <strong><%= link_to "here", root_url %></strong> to return to the homepage.
+             </div>
         </div>
 
     </div>

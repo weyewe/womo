@@ -36,3 +36,28 @@ UPLOAD_FILE_STATUS = {
   :resized => 2, 
   :saved => 3 
 }
+
+BACKEND_IMAGE_URL = {
+  :manage_pictures => 'http://s3.amazonaws.com/wilpot-asset/post-format/latest-gallery.png',
+  :manage_content => 'http://s3.amazonaws.com/wilpot-asset/post-format/latest-aside.png',
+  :manage_featured_pictures => 'http://s3.amazonaws.com/wilpot-asset/post-format/gallery-hover.png',
+  
+  # skin-default.css
+  :divider => 'http://s3.amazonaws.com/wilpot-asset/skin-default/divider.png',
+  :divider_2 => 'http://s3.amazonaws.com/wilpot-asset/skin-default/divider2.png',
+  
+  :slider_link => 'http://s3.amazonaws.com/wilpot-asset/skin-default/slider-link.png',
+  :slider_next => 'http://s3.amazonaws.com/wilpot-asset/skin-default/slider-next.png',
+  :slider_prev => 'http://s3.amazonaws.com/wilpot-asset/skin-default/slider-prev.png',
+  :slider_next_hover => 'https://s3.amazonaws.com/wilpot-asset/skin-default/slider-next-hover.png',
+  :slider_prev_hover => 'https://s3.amazonaws.com/wilpot-asset/skin-default/slider-prev-hover.png',
+  
+  :filtrable_on => 'http://s3.amazonaws.com/wilpot-asset/skin-default/filtrable-on.png',
+  :filtrable_off => 'http://s3.amazonaws.com/wilpot-asset/skin-default/filtrable-off.png', 
+  :bg => 'http://s3.amazonaws.com/wilpot-asset/skin-default/bg.png',
+  :glyphicons_halflings_white => 'http://s3.amazonaws.com/wilpot-asset/skin-default/glyphicons-halflings-white.png',
+  :glyphicons_halflings => 'http://s3.amazonaws.com/wilpot-asset/skin-default/glyphicons-halflings.png',
+  
+  :footer_bg => 'http://s3.amazonaws.com/wilpot-asset/skin-default/footer-bg.jpg',
+  :footer_divider => 'http://s3.amazonaws.com/wilpot-asset/skin-default/footer-divider.png'
+}

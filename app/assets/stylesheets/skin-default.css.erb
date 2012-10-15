@@ -61,15 +61,15 @@ a,
 .title,
 #header,
 #welcome{
-    background: url(<%= asset_path "divider.png" %>  ) repeat-x bottom left !important;
+    background: url(<%= asset_path BACKEND_IMAGE_URL[:divider]  %>  ) repeat-x bottom left !important;
 }
 
 .pagination{
-    background: url(<%= asset_path "divider.png" %>  ) repeat-x top left;
+    background: url(<%= asset_path BACKEND_IMAGE_URL[:divider]  %>  ) repeat-x top left;
 }
 
 #welcome h1{
-    background: url(<%= asset_path "divider2.png" %>  ) repeat-y right top;
+    background: url(<%= asset_path BACKEND_IMAGE_URL[:divider_2]  %>  ) repeat-y right top;
 }
 
 
@@ -132,7 +132,7 @@ a,
     background-color: #e95850;
 }
 #home_slider .num span{border-bottom: 1px solid #f4746d;}
-#home_slider .num a{background-image: url(../images/slider-link.png);}
+#home_slider .num a{background-image: url(  <%= asset_path BACKEND_IMAGE_URL[:slider_link] %>  );}
 
 
 #home_slider h2,
@@ -141,10 +141,10 @@ a,
 #home_slider h2{border-left: 1px solid #4D4D4D;}
 #home_slider p{border-right: 1px solid #4D4D4D;}
 
-.flex-direction-nav a.flex-prev{background-image: url(<%= asset_path "slider-prev.png" %>   );}
-.flex-direction-nav a.flex-next{background-image: url(<%= asset_path "slider-next.png" %>   );}
-.flex-direction-nav a.flex-prev:hover{background-image: url(<%= asset_path "slider-prev-hover.png" %> );}
-.flex-direction-nav a.flex-next:hover{background-image: url(<%= asset_path "slider-next-hover.png" %>  );}
+.flex-direction-nav a.flex-prev{background-image: url( <%= asset_path BACKEND_IMAGE_URL[:slider_prev]   %>   );}
+.flex-direction-nav a.flex-next{background-image: url(<%= asset_path BACKEND_IMAGE_URL[:slider_next]   %>   );}
+.flex-direction-nav a.flex-prev:hover{background-image: url(<%= asset_path BACKEND_IMAGE_URL[:slider_prev_hover] %> );}
+.flex-direction-nav a.flex-next:hover{background-image: url(<%= asset_path BACKEND_IMAGE_URL[:slider_next_hover]   %>  );}
 
 
 
@@ -254,11 +254,11 @@ a,
 /*====================== FOOTER ======================*/
 #footer{
     color: #d0d0d0;
-    background-image: url(<%= asset_path "footer-bg.jpg" %>    );
+    background-image: url(<%= asset_path BACKEND_IMAGE_URL[:footer_bg]   %>    );
 }
 #footer .title{
     color: #e1e1e1;
-    background-image: url(<%= asset_path "footer-divider.png" %>   ) !important;
+    background-image: url(<%= asset_path BACKEND_IMAGE_URL[:footer_divider]     %>   ) !important;
 }
 #footer a{
     color: #fff;
@@ -376,13 +376,13 @@ a,
     /*CATEGORIES*/
     #sidebar .categories a,
     #sidebar .menu-filtrable li a{
-        background: url(<%= asset_path "filtrable-off.png" %>  ) no-repeat left center;
+        background: url(<%= asset_path BACKEND_IMAGE_URL[:filtrable_off]  %>  ) no-repeat left center;
     }
     #sidebar .categories .current a,
     #sidebar .categories a:hover,
     #sidebar .menu-filtrable li.current a{
         color: #444444;
-        background: url(<%= asset_path "filtrable-on.png" %>  ) no-repeat left center;
+        background: url(<%= asset_path BACKEND_IMAGE_URL[:filtrable_on]    %>  ) no-repeat left center;
     }
 
 

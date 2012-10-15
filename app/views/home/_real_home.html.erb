@@ -10,8 +10,10 @@
 
         <!-- .span4 -->
         <div class="span4"> 
-            <h1><%= project.title %></h1>
-            <p><%= project.teaser  %></p>
+            <h1><%= project.title %></h1> 
+            <div class='project-description'> 
+              <%=  project.description[0..150] + "..." %>  
+            </div>
             
             <ul class="clearfix skilss" data-rel="tooltip" title="Services Use">
                 <li><i class="icon-ok-circle"></i>Web Design</li>

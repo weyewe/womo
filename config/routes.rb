@@ -9,6 +9,10 @@ Womo::Application.routes.draw do
   end
   resources :bookmarks 
   
+  devise_scope :user do
+    get "admin", :to => "devise/sessions#new"
+  end
+  
   # uploading assembly_url to project  # if the processing is done in the server. 
   match 'create_picture_from_assembly/:project_id' => "pictures#create_picture_from_assembly", :as => :create_picture_from_assembly, :method => :post
   match 'transloadit_status_for_picture' => "pictures#transloadit_status_for_picture", :as => :transloadit_status_for_picture, :method => :post

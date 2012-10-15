@@ -34,7 +34,7 @@
     <ul class="latest-post post-statistic"> 
       <li class="clearfix">
         <%= link_to new_project_picture_url(project) do %>
-           <%= image_tag 'post-format/latest-gallery.png', :style => 'opacity:1 ;'%>
+           <%= image_tag BACKEND_IMAGE_URL[:manage_pictures], :style => 'opacity:1 ;'%>
         <% end %>
        
        
@@ -51,7 +51,7 @@
       <li class="clearfix">
         
         <%= link_to edit_project_content_url(project) do %>
-           <%= image_tag 'post-format/latest-aside.png', :style => 'opacity:1 ;'%>
+           <%= image_tag BACKEND_IMAGE_URL[:manage_content], :style => 'opacity:1 ;'%>
         <% end %>
         
         <div style='margin-left:65px;'>
@@ -88,7 +88,7 @@
       <li class="clearfix">
         
         <%= link_to manage_featured_project_url(project) do %>
-           <%= image_tag 'post-format/gallery-hover.png', :style => 'opacity:1 ;'%>
+           <%= image_tag BACKEND_IMAGE_URL[:manage_featured_pictures] , :style => 'opacity:1 ;'%>
         <% end %>
         
         <div style='margin-left:65px;'>

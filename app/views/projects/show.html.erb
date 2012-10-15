@@ -15,10 +15,12 @@
       <% end %> 
     </div>
     
-    <div class='project-description'> 
-      ohaefohaoiefhoajofeawjea wkjlkfajwel jfalkej lfkajlkfje alkj
-      <%= @project.description %>
-    </div>
+    
+    <% if not  @project.description.nil?  and @project.description.length != 0 %>
+      <div class='project-description'> 
+        <%= @project.description %>
+      </div>
+    <% end %>
     
   </div><!-- /.span8 -->
 

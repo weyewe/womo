@@ -38,6 +38,7 @@
       var is_done_resizing = false;
         
       var failed_upload_file_name_list = [] ;
+      var server_url = $("#server_url").attr('value');
       
       
       var uploader = $("#uploader").pluploadQueue({
@@ -135,22 +136,14 @@
                $("#fail-list").append("<li>" + file.name +"</li>");
              }else if(file.status ==  plupload.DONE){
                
+               // the return value is not parsed
                parsedData = jQuery.parseJSON( info["response"] ); 
+               
+               // uploaded counter increased.. but processed counter is not increased yet
                uploaded_counter +=1 ;
                $("#uploaded_counter").text(uploaded_counter);
-               
-               var uploaded_file_object = {};
-               uploaded_file_object["assembly_url"] = parsedData["assembly_url"];
-               uploaded_file_object["status"] = parseInt('<%= UPLOAD_FILE_STATUS[:uploaded] %>'); 
-               uploaded_file_list.push( parsedData["assembly_url"] );
-               is_done_resizing = false;  
-               
-                           //    
-                           // console.log("The prime caller of checkTransloaditResizing");
-                           // setTimeout(function(){ 
-                           //    checkTransloaditResizing(parsedData); 
-                           //    }, 2000);
-                           //  
+               // is_done_resizing = false; 
+               checkTransloaditResizing(parsedData);
              } 
            },
       
@@ -162,147 +155,49 @@
          }
           
       });
-      
-      function pendingResizeArray(){
-        var pending_resize_array = []; 
-        console.log("Uploaded file list length: "+ uploaded_file_list.length );
-        console.log("uploaded file list content: " + uploaded_file_list );
-        if(typeof uploaded_file_list === "undefined"){
-          console.log("it is undefined");
-        }else{
-          console.log("it is defined");
-        }
-        for(var i = 0; i < uploaded_file_list.length ; i++ ){
-          var current_element = uploaded_file_list[i];
-          if(current_element['status'] == parseInt('<%= UPLOAD_FILE_STATUS[:uploaded] %>')){
-            var element = {};
-            element['index'] = i; 
-            element["assembly_url"] = uploaded_file_list[i]['assembly_url'];
-            element['status'] = uploaded_file_list[i]['status'];
-            pending_resize_array.push( element );
-          }
-        };
-        
-        return pending_resize_array; 
-      }
-      
-      function continuousCheckTransloaditResizing(){
-        var pending_resize_array = pendingResizeArray(); 
-        
-        if( pending_resize_array.length == 0 ){
-          setTimeout(function(){ 
-            continuousCheckTransloaditResizing(); 
-            }, 3000);
-        }
-        
-        if(isUploadFinished() && uploading_started == true ){
-          checkUploadFinished();   
-        }else{
-          // check each pending resize array content
-          for(var i = 0; i < pending_resize_array.length ; i++) {
-            var assembly_url = pending_resize_array[i]['assembly_url'];
-            
-            var parsedData = {};
-            $.ajax({
-              url: assembly_url ,
-              type: "GET", 
-              dataType: 'json',
-              success: function(response){ 
-                console.log("The response is: " + response);
-                // auto parsed to be json 
-                parsedData= response; 
-                console.log("The assembly result is : " + parsedData['ok'] );            // 
-                            // parsedData  = jQuery.parseJSON( response ); 
-                            // console.log("The new  output data is : " + parsedData);
-              }
-            });
-            
-            if(parsedData['ok'] == "ASSEMBLY_COMPLETED"){
-              uploaded_file_list[ pending_resize_array[i]['index'] ]['status'] = parseInt('<%= UPLOAD_FILE_STATUS[:resized]  %>'); 
-              
-              $.ajax({
-                url: '<%= create_featured_picture_url(@project)%>',
-                type: "POST",
-                data: {
-                  'results' : parsedData['results']
-                },
-                dataType: 'script',
-                success: function(response){ 
-                  console.log("Adding the processed_counter");
-                  console.log("Current value of processed counter: " + processed_counter);
-                  processed_counter += 1
-                  console.log("After addition value of processed counter: " + processed_counter);
-                  $("#processed_counter").text(processed_counter);
-                  is_done_resizing = false;
-                  checkUploadFinished();  
-                }
-              });
-            } 
-          }
-          
-          
-          
-          
-          // keep polling 
-          setTimeout(function(){ 
-            continuousCheckTransloaditResizing(); 
-            }, 3000);
-        }
-        
-        
-      };
+    
+     
       
       
       function checkTransloaditResizing(parsedData){
-        if( is_done_resizing == true ) {
-          return false; 
-        }
-        if( pending_resize_array.length == 0 ){
-          return false; 
-        }
+        // if( is_done_resizing == true ) {
+        //           return false; 
+        //         } 
+        
         console.log("Assembly_url : " + parsedData["assembly_url"] );
         $.ajax({
           url: parsedData["assembly_url"],
           type: "GET", 
           dataType: 'json',
-          success: function(response){ 
-            console.log("The response is: " + response);
+          success: function(response){  
             // auto parsed to be json 
-            parsedData= response; 
-            console.log("The assembly result is : " + parsedData['ok'] );            // 
-                        // parsedData  = jQuery.parseJSON( response ); 
-                        // console.log("The new  output data is : " + parsedData);
+            parsedData = response;  
           }
         });
         
         console.log("Result of resizing checking: "+  parsedData["ok"]);
         if(parsedData["ok"] == "ASSEMBLY_COMPLETED" && is_done_resizing == false){
           console.log("The output data is done/.. hahaha");
-          is_done_resizing = true; 
+          // is_done_resizing = true; 
           
           $.ajax({
-            url: '<%= create_featured_picture_url(@project)%>',
+            url:  server_url ,
             type: "POST",
             data: {
               'results' : parsedData['results']
             },
             dataType: 'script',
-            success: function(response){ 
-              console.log("Adding the processed_counter");
-              console.log("Current value of processed counter: " + processed_counter);
-              processed_counter += 1
-              console.log("After addition value of processed counter: " + processed_counter);
+            success: function(response){  
+              processed_counter += 1 
               $("#processed_counter").text(processed_counter);
-              is_done_resizing = false;
-              checkUploadFinished();  
+              // is_done_resizing = false; 
+              checkUploadFinished();
             }
-          }); 
-          // console.log("gonna check upload finished");
-          //       checkUploadFinished();  
-        }else{
+          });  
+        }else{ 
           setTimeout(function(){ 
               checkTransloaditResizing(parsedData); 
-              }, 2000); 
+              }, 3000); 
         }
       }
       
@@ -318,13 +213,8 @@
         return counter; 
       }
     
-      function isUploadFinished(){
-        console.log("Check upload finished");
-        var upload_success_counter = selected_counter - failed_counter ;
-        console.log("upload_success_counter: " + upload_success_counter ); 
-        console.log("uploaded_counter: " + uploaded_counter);
-        console.log("processed_counter: " + processed_counter);
-        console.log("failed_counter: " + failed_counter);
+      function isUploadFinished(){ 
+        var upload_success_counter = selected_counter - failed_counter ; 
         
         if( (uploaded_counter == processed_counter)  && 
               ( uploaded_counter == upload_success_counter ) ){

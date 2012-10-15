@@ -2,7 +2,7 @@ class PicturesController < ApplicationController
   def new
     @project = Project.find_by_id params[:project_id]
     @new_picture = @project.pictures.new 
-    @pictures = @project.pictures.where(:is_deleted => false ).order("name ASC")
+    @pictures = @project.pictures.where(:is_deleted => false , :is_feature_picture => false ).order("name ASC")
   end
   
   def create_picture_from_assembly
@@ -41,6 +41,15 @@ class PicturesController < ApplicationController
   end
   
   
+  def create
+    @project = Project.find_by_id( params[:project_id])
+    @picture = Picture.create 
+    @picture.project_id = @project.id 
+    @picture.save 
+      
+    @picture.parse_transloadit( params , FALSE_CHECK)
+  end
+  
   def create_featured_picture
     @project = Project.find_by_id( params[:project_id])
     @picture = Picture.create 
@@ -48,8 +57,7 @@ class PicturesController < ApplicationController
     @picture.save 
      
         
-    @picture.parse_transloadit( params , TRUE_CHECK) 
-    
+    @picture.parse_transloadit( params , TRUE_CHECK)  
   end
   
 end

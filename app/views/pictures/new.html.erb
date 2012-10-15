@@ -73,7 +73,9 @@
         <%= stylesheet_link_tag "jquery.plupload.queue"%>
       <% end %>
        
-      <%= render :partial => "pictures/inline_js/plupload_js"%>
+      <% content_for :additional_js do %>
+        <%= javascript_include_tag "plupload.full", "jquery.plupload.queue", "plupload_transloadit" %>  
+      <% end %>
        
     </div>
 

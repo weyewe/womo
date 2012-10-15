@@ -1,5 +1,14 @@
 class ProjectsController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:show]
   
+  def show
+    @project = Project.find params[:id]
+    if @project.is_published == false
+      redirect_to root_url
+      return 
+    end
+    
+  end
   
   def index
     @projects = Project.latest_available_projects

@@ -17,6 +17,8 @@ class CreateProjects < ActiveRecord::Migration
       
       t.integer :category_id 
       
+      
+     
 
       t.timestamps
     end

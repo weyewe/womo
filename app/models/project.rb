@@ -1,9 +1,14 @@
 class Project < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title , use: :slugged
+  
   attr_accessible :title, :teaser, :description
   has_many :pictures
   
   validates_presence_of :title 
   belongs_to :category
+  
+  
   
 =begin
   Object Creation
@@ -58,19 +63,19 @@ class Project < ActiveRecord::Base
   Article management
 =end
   def current_main_pictures # teaser 
-    self.pictures.where(:is_deleted => false,:is_feature_picture => false, :is_main_picture => true)
+    self.pictures.where(:is_deleted => false,:is_feature_picture => false, :is_main_picture => true).order("name ASC")
   end
   
   def content_pictures
-    self.pictures.where(:is_deleted => false,:is_feature_picture => false )
+    self.pictures.where(:is_deleted => false,:is_feature_picture => false ).order("name ASC")
   end
   
   def featured_pictures
-    self.pictures.where(:is_deleted => false,:is_feature_picture => true , :is_feature_picture_displayed => false )
+    self.pictures.where(:is_deleted => false,:is_feature_picture => true , :is_feature_picture_displayed => false ).order("name ASC")
   end
   
   def current_displayed_featured_pictures
-    self.pictures.where(:is_deleted => false,:is_feature_picture => true, :is_feature_picture_displayed =>true  )
+    self.pictures.where(:is_deleted => false,:is_feature_picture => true, :is_feature_picture_displayed =>true  ).order("name ASC")
   end
 
 

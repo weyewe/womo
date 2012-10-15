@@ -91,6 +91,7 @@ GEM
     excon (0.16.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    friendly_id (4.0.5)
     fssm (0.2.9)
     gem_plugin (0.2.3)
     girl_friday (0.10.0)
@@ -223,6 +224,7 @@ DEPENDENCIES
   devise
   exceptional
   font-awesome-rails!
+  friendly_id (~> 4.0.1)
   heroku
   hirefireapp
   i18n

@@ -247,7 +247,7 @@
               uploaded_file_list[ pending_resize_array[i]['index'] ]['status'] = parseInt('<%= UPLOAD_FILE_STATUS[:resized]  %>'); 
               
               $.ajax({
-                url: '<%= create_featured_picture_url(@project)%>',
+                url: '<%= create_featured_picture_url(@project.id)%>',
                 type: "POST",
                 data: {
                   'results' : parsedData['results']
@@ -307,7 +307,7 @@
           is_done_resizing = true; 
           
           $.ajax({
-            url: '<%= create_featured_picture_url(@project)%>',
+            url: '<%= create_featured_picture_url(@project.id)%>',
             type: "POST",
             data: {
               'results' : parsedData['results']

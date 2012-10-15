@@ -1,0 +1,26 @@
+<%= render :partial => "layouts/dashboard_guide", :locals => {
+  :title => "#{@project.title}",
+  :description => "#{@project.teaser}"
+} %> 
+ 
+ 
+
+<div class="row portfolio-single entry" style='margin-bottom:30px;'>
+
+  <!-- .span8 -->
+  <div class="span12" style="text-align:center;">
+    <div class='image-portfolio-wrapper' style='margin-bottom:30px;'>
+      <% @project.content_pictures.each do |picture| %>
+        <%= image_tag picture.index_image_url , :style => 'margin-bottom:10px;'%>
+      <% end %> 
+    </div>
+    
+    <div class='project-description'> 
+      ohaefohaoiefhoajofeawjea wkjlkfajwel jfalkej lfkajlkfje alkj
+      <%= @project.description %>
+    </div>
+    
+  </div><!-- /.span8 -->
+
+  
+</div><!-- /.row -->  

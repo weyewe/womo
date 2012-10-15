@@ -2,7 +2,7 @@ $(document).ready(function(){
   var $form = $("#edit_object");  
   <% new_form = escape_javascript(  render :partial => "projects/edit_object_form", :locals => {
     :object => @project,
-    :url => update_project_content_url(@project)
+    :url => update_project_content_url(@project.id)
   })%>
   
   //  hide showLoading 

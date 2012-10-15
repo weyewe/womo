@@ -10,7 +10,7 @@
 
         <!-- .span4 -->
         <div class="span4"> 
-            <h1><%= project.title %></h1> 
+            <h1><%= link_to project.title, project_url(project) %></h1> 
             <div class='project-description'> 
               <%=  project.description[0..150] + "..." %>  
             </div>

@@ -206,7 +206,7 @@
                
                parsedData = jQuery.parseJSON( info["response"] ); 
                 $.ajax({
-                  url: '<%= create_picture_from_assembly_url(@project)%>',
+                  url: '<%= create_picture_from_assembly_url(@project.id)%>',
                   type: "POST",
                   data: {
                     'assembly_url' : parsedData["assembly_url"]

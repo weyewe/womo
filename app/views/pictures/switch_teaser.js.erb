@@ -1,0 +1,46 @@
+$(document).ready(function(){ 
+  // refreshing the other
+  <% @other_current_picture_list.each do |picture| %>
+    <% new_row = escape_javascript( render :partial => "pictures/entry", :locals => {
+      :picture => picture 
+    }) %>
+
+    $("#pic_entry-<%= picture.id %>").replaceWith('<%= new_row %>');
+    
+    
+    $('#toggler-<%=  picture.id %>').toggleButtons({ 
+      label: {
+        enabled: "YES",
+        disabled: "NO"
+      },
+      width: 150,
+      onChange: function ($el, status, e) {  
+        executeToggling( $el.parents(".toggler").attr("id"), status ); 
+      }
+    });
+    
+    
+  <% end %>
+  
+  // the object 
+  var $wrapper = $("#pic_entry-<%=  @picture.id %>");
+  $wrapper.hideLoading();  
+  
+  <% new_row = escape_javascript( render :partial => "pictures/entry", :locals => {
+    :picture => @picture 
+  }) %>
+
+  $("#pic_entry-<%= @picture.id %>").replaceWith('<%= new_row %>');
+  
+  $('#toggler-<%=  @picture.id %>').toggleButtons({ 
+    label: {
+      enabled: "YES",
+      disabled: "NO"
+    },
+    width: 150,
+    onChange: function ($el, status, e) {  
+      executeToggling( $el.parents(".toggler").attr("id"), status ); 
+    }
+  });
+  
+});

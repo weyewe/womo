@@ -60,4 +60,21 @@ class PicturesController < ApplicationController
     @picture.parse_transloadit( params , TRUE_CHECK)  
   end
   
+  
+  def destroy_picture
+    @picture = Picture.find_by_id params[:entity_id]
+    
+    @picture.mark_as_deleted
+  end
+  
+  def switch_teaser
+    @picture = Picture.find_by_id params[:entity_switch_id]
+    
+    @other_current_picture_id_list = @picture.other_current_main_pictures.map{|x| x.id }
+    
+    @picture.switch_teaser( params[:action_value].to_i )
+    @other_current_picture_list = Picture.where(:id => @other_current_picture_id_list)
+    
+  end
+  
 end

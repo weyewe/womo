@@ -26,8 +26,9 @@ class CreatePictures < ActiveRecord::Migration
       
       t.boolean  :is_deleted,                 :default => false
       t.boolean  :is_main_picture ,     :default => false  # teaser pic 
-      
       t.boolean  :is_feature_picture, :default => false 
+      
+      
       t.boolean :is_feature_picture_displayed, :default => false 
 
       t.timestamps

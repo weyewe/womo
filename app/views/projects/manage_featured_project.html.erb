@@ -88,6 +88,17 @@
     </div>
 
 
+    <div>
+      
+      <% @pictures.each do |picture| %>
+          <%= render :partial => 'pictures/featured_entry', :locals => {
+            :picture => picture 
+          }%>
+      <% end %>
+      
+
+
+    </div>
  
      
   </section>
@@ -99,6 +110,15 @@
 
 
 
+<!-- form to delete picture -->
+<div class=" hidden" id="trigger_delete">
+  <%= form_for Picture.new, :url => destroy_picture_url   do |f| %>
+    <%= hidden_field_tag 'entity_id' , ''  %> 
+  <% end %>
+</div>
+
+
+<!-- form to trigger the featured pic -->
 
 
 

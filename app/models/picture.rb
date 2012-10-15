@@ -73,5 +73,31 @@ class Picture < ActiveRecord::Base
     self.save
   end
   
+  def mark_as_deleted
+    self.is_deleted = true 
+    self.save 
+  end
+  
+  def switch_teaser(value)
+    if value.to_i == TRUE_CHECK
+      self.other_current_main_pictures.each do |pic|
+        pic.is_main_picture = false
+        pic.save
+      end
+      self.is_main_picture = true 
+      self.save 
+    else
+      self.is_main_picture = false
+      self.save
+    end
+  end
+  
+  def other_current_main_pictures
+    current_pic = self 
+    self.project.current_main_pictures.where{ id.not_eq current_pic.id }
+  end
+  
+  
+  
   
 end

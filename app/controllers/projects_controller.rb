@@ -20,6 +20,8 @@ class ProjectsController < ApplicationController
   def manage_featured_project
     @project = Project.find_by_id params[:project_id]
     @new_picture = Picture.new 
+    
+    @pictures = @project.pictures.where(:is_deleted => false , :is_feature_picture => true ).order("name ASC")
   end
   
   

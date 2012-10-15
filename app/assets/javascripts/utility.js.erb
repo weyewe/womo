@@ -42,3 +42,41 @@ Array.prototype.remove = function(from, to) {
 // 
 // // Remove the second item from the array
 // array.remove(1);
+
+function executeToggling( toggle_button_id, status ){ 
+  var $toggle_button =  $("#"+toggle_button_id ) ;
+  var $checkbox = $(".toggle-checkbox", $toggle_button);
+    
+  // $toggle.toggleButtons('setState', false);
+  
+  // if(   $checkbox.is(":checked")  ) {
+  //   $toggle_button.toggleButtons('setState', true); 
+  // }else{
+  //   $toggle_button.toggleButtons('setState', false); 
+  // }
+  
+  var id = $toggle_button.attr("id").split('-')[1];
+  
+  var $form = $("#trigger_switch form");
+  var $wrapper = $("#pic_entry-" + id);  
+  
+  $("#entity_switch_id").attr("value", id);
+  
+  if( status == true ){
+    $("#action_value").attr("value", '<%= TRUE_CHECK %>');
+  }else if(status == false){
+    $("#action_value").attr("value", '<%= FALSE_CHECK %>');
+  }
+  
+  $wrapper.showLoading(); 
+  
+  $.ajax({
+    url: $form.attr("action"),
+    type: "POST",
+    data: $form.serialize(),
+    dataType: 'script',
+    success: function(response){
+      $form.clearForm();  
+    }
+  });
+}

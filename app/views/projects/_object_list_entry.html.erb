@@ -48,7 +48,7 @@
         <% end %>
        
         <a href="#">Manage Pictures</a>
-        <!-- <span class="date">June 30, 2012</span> -->
+        <span class="date"><%= project.content_pictures.count %> pictures</span>
       </li>
       <!-- <li class="clearfix">
            <%= image_tag 'post-format/latest-quote.png', :style => 'opacity:1 ;'%>
@@ -62,8 +62,7 @@
         <% end %>
         
         
-        <%= link_to "Manage Content", edit_project_content_url(project) %> 
-        <!-- <span class="date">June 30, 2012</span> -->
+        <%= link_to "Manage Content", edit_project_content_url(project) %>  
       </li>
       
       <li class="clearfix">
@@ -73,8 +72,8 @@
         <% end %>
         
         
-        <%= link_to "Featured Project", manage_featured_project_url(project) %> 
-        <!-- <span class="date">June 30, 2012</span> -->
+        <%= link_to "Featured Picture", manage_featured_project_url(project) %> 
+        <span class="date"><%= project.featured_pictures.count %> pictures</span>
       </li>
     </ul>
     

@@ -25,14 +25,31 @@ class Project < ActiveRecord::Base
     Project.where(:is_deleted => false ).order("created_at DESC")
   end
   
-  def main_picture  
-    main_picture = self.pictures.where(:is_deleted => false, :is_main_picture => true ).first
+  def main_picture   # the teaser picture 
+    main_picture = self.pictures.where(:is_deleted => false, :is_feature_picture => false , :is_main_picture => true ).first
     if main_picture.nil?
-      main_picture=   self.pictures.where(:is_deleted => false ).first
+      main_picture=   self.pictures.where(:is_deleted => false , :is_feature_picture => false ).first
     end 
     
     return main_picture
   end
   
+  
+  
+  
+=begin
+  Article management
+=end
+  def current_main_pictures # teaser 
+    self.pictures.where(:is_deleted => false,:is_feature_picture => false, :is_main_picture => true)
+  end
+  
+  def content_pictures
+    self.pictures.where(:is_deleted => false,:is_feature_picture => false )
+  end
+  
+  def featured_pictures
+    self.pictures.where(:is_deleted => false,:is_feature_picture => true )
+  end
   
 end

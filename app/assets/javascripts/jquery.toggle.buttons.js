@@ -1,6 +1,6 @@
 !function ($) {
   "use strict";
-  // version: 2.3
+  // version: 2.6
   // by Mattia Larentis - follow me on twitter! @SpiritualGuru
 
   var addToAttribute = function (obj, array, value) {
@@ -211,6 +211,13 @@
         },
         toggleActivation: function () {
           $(this).toggleClass('deactivate');
+        },
+        toggleState: function () {
+          var $input = $(this).find('input');
+          $input.attr('checked', !$input.is(':checked')).trigger('change')
+        },
+        setState: function(value) {
+          $(this).find('input').attr('checked', value).trigger('change')
         }
       };
 
@@ -219,7 +226,7 @@
     else if (typeof method === 'object' || !method)
       return methods.init.apply(this, arguments);
     else
-      $.error('Method ' + method + ' does not exist on jQuery.tooltip');
+      $.error('Method ' + method + ' does not exist!');
   };
 
   $.fn.toggleButtons.defaults = {

@@ -101,4 +101,18 @@
   <%= render :partial => 'layouts/process_nav'%>
 </div>
 
+<!-- form to delete picture -->
+<div class=" hidden" id="trigger_delete">
+  <%= form_for Picture.new, :url => destroy_picture_url   do |f| %>
+    <%= hidden_field_tag 'entity_id' , ''  %> 
+  <% end %>
+</div>
 
+
+<!-- form to trigger the teaser pic -->
+<div class=" hidden" id="trigger_switch">
+  <%= form_for Picture.new, :url => switch_teaser_url   do |f| %>
+    <%= hidden_field_tag 'entity_switch_id' , ''  %> 
+    <%= hidden_field_tag 'action_value', '' %>
+  <% end %>
+</div>

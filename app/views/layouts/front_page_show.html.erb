@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<!--
+    Theme Name: Sniper
+    Description: Premium HTML/CSS Template
+    Author: fireform 
+    License: GNU General Public License version 3.0
+    License URI: http://www.gnu.org/licenses/gpl-3.0.html
+    Version: 1.0
+    
+    Designed & Coded by Fireform
+    All files, unless otherwise stated, are released under the GNU General Public License
+    version 3.0 (http://www.gnu.org/licenses/gpl-3.0.html)
+
+-->
+
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
+	<title>Sniper - HTML/CSS Template</title>
+	
+  <!-- <link href="images/favicon.png" rel="shortcut icon"> -->
+	
+	<%=  stylesheet_link_tag    "front_page"%> 
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<%= javascript_include_tag 'front_page'%>
+  
+	
+</head>
+<body class="ef-closed-page">	
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=338879856124711";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+	
+	<div class="ef-slider-overlay"></div>
+	
+  <!-- <div id="tray-button"><div><span class="ef-tooltip">Toggle Fullscreen</span></div></div> -->
+	
+  <!-- <div id="ef-topbar-button"><span class="ef-tooltip">More Info</span></div> -->
+	
+	<div id="ef-header" class="ef-toggled">
+		<div class="ef-logo-wrapper ef-toggled">
+		  <%= link_to root_url  , :class=> "ef-logo ef-external-link" do %>
+		    <%= image_tag  FRONTPAGE_IMAGE_URL[:logo] %> 
+		  <% end %>
+      <!-- <a href="index-2.html" class="ef-logo ef-external-link"><img src="images/logo.png" alt=""></a> -->
+		</div>
+		<div id="ef-mobile-menu-wrapper"></div>		
+	</div>
+
+<!-- Navigation -->
+  
+<!--  <div class="ef-nav-wrapper">  
+    <span class="ef-menu-tab"></span>   
+    
+    <div class="ef-menu-wrapper">     
+      <ul class="ef-navmenu">
+        <li class="ef-menu-cur">
+            <%= link_to "Home",  root_url + "#home" %>  
+        </li>
+        <li><a href="#about">About</a></li>       
+        
+        <li><a href="#blog">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div> -->
+	 
+
+<!-- Blog post -->
+	
+	<div class="ef-content current-section" id="blog-post">
+		<div class="ef-inner-header ef-toggled">
+			
+			<div class="ef-page-details">				
+				<h1>Blog</h1>
+				<div class="ef-description">
+					<p>You can write <span>short description</span> of a page here. Freaky awesome!</p>
+				</div>
+        <!-- <a class="ef-external-link ef-back-arrow" href="index-2.html#blog"></a> -->
+				<%= link_to "", root_path + '#blog', :class => 'ef-external-link ef-back-arrow' %>
+				
+			</div>
+			<span class="gradi"></span>
+		</div>
+		
+		<div class="ef-column ef-fold">	
+			<div class="ef-col-inner">
+				<div class="ef-page-content clearfix">
+				
+					<div class="ef-post-wrapper" style='background-color:white;'>
+					  <h1 style='text-align:center;'><%= @project.title %></h1>
+					  
+						<div class="bottom-3_em">
+							<div class="proj-img">
+                <!-- <div class="ef-video"> -->
+						      <!-- <iframe src="http://player.vimeo.com/video/43788294?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> -->
+						      
+						      
+                <!-- </div> -->
+                <% @project.content_pictures.each do |picture| %>
+                  <%= image_tag picture.index_image_url , :style => 'margin-bottom:10px;'%>
+                <% end %>
+                
+							</div>
+						</div>						
+						
+						
+						<div style="padding:10px;">
+						  <%= @project.description %>
+						</div>
+		 
+						<hr class="bottom-2_4em">
+						
+
+<!-- Comments -->
+            <!-- THIS IS THE FACEBOOK COMMENT -->
+            <div style='text-align:center;'>
+            <div class="fb-comments" data-href="http://example.com" data-num-posts="2" data-width="500"></div>
+						<hr class="clear">
+						</div>
+						
+					</div>					
+
+<!-- Sidebar -->					
+
+					<div class="ef-sidebar-wrapper clearfix">
+								
+						<div class="ef-sidebar">
+						
+							<div class="shortcode-wrapper">
+								
+								<div class="one_half">
+								
+									<div class="widget_p-post-nav clearfix bottom-2_4em">
+										<a class="ef-button ef-big-btn ef-external-link ef-prev" href="index-2.html#blog">Back to Blog</a>
+										<div class="shortcode-wrapper">
+									    <!-- <div class="one_half">
+									                       <a class="ef-button ef-big-btn ef-prev" href="#">Previous</a>
+									                     </div>
+									                     <div class="one_half">
+									                       <a class="ef-button ef-big-btn" href="#">Next</a>
+									                     </div> -->
+										</div>
+										
+									</div>
+																	
+								</div>
+								
+								<div class="one_half">
+								
+									<div class="widget_categories bottom-2_4em">
+                    <!-- <h5>Blog Categories</h5> -->
+										
+										<div style='max-width:200px; text-align:center;' >
+										<div class="fb-like" data-href="http://www.axioo.com/" data-send="false" data-layout="box_count" data-width="300" data-show-faces="true" data-font="arial"></div>
+										</div>
+										
+										
+										<!--                    <ul>
+										                      <li><a href="#">B&amp;W</a></li>
+										                        <li class="p-current"><a href="#">Nature</a></li>
+										                        <li><a href="#">People</a></li>
+										                        <li><a href="#">For stocks</a></li>
+										                        <li><a href="#">Technology</a></li>
+										                      <li><a href="#">Freebies</a></li>
+										                    </ul> -->
+										
+									</div>
+									
+								</div>
+								
+								<div class="one_half">
+									<div class="widget_recent_comments bottom-2_4em">
+                    <!-- THIS IS THE FB LIKE -->
+									</div>
+								</div>
+								 					
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div> 
+	</div>
+	 
+	<div id="ef-loader-overlay"></div>
+	
+</body>
+</html>

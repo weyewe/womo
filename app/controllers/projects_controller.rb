@@ -8,6 +8,8 @@ class ProjectsController < ApplicationController
       return 
     end
     
+    render :layout => "front_page_show"  , :file => 'home/front_page/show'
+    
   end
   
   def index

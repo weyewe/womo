@@ -24,6 +24,17 @@ $(document).ready(function(){
           
     $("#project_form_wrapper").after('<%= new_row %>'); 
     $("#no_entry_notification").remove();
+    
+    $('#toggler-<%=  @new_object.id %>').toggleButtons({ 
+       label: {
+         enabled: "PUBLISH",
+         disabled: "Draft"
+       },
+       width: 200,
+       onChange: function ($el, status, e) {
+         executeToggling( $el.parents(".toggler").attr("id") , status ); 
+       }
+     });
   
   <% else %> 
   
@@ -45,6 +56,6 @@ $(document).ready(function(){
   });
   
    
-  
+ 
   
 });

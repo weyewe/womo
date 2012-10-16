@@ -114,9 +114,19 @@ class Picture < ActiveRecord::Base
       end
       self.is_feature_picture_displayed = true 
       self.save 
+      project = self.project 
+      project.is_featured_project = true
+      project.save 
     else
       self.is_feature_picture_displayed = false
       self.save
+      
+      if self.other_featured_pictures.count == 0 
+        project = self.project 
+        project.is_featured_project = false
+        project.save
+      end
+        
     end
   end
   

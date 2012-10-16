@@ -77,7 +77,7 @@ jQuery(function($){
 		}
 		
 	var slider_array= [];	
-	<% SUPERSIZED_OBJECT_HASH.each do |object| %>
+	<% SUPERSIZED_OBJECT_HASH[0..1].each do |object| %>
 	  var slider_object = {
 	    image: '<%= object[:image] %>',
 	    title: '<%= object[:title] %>',
@@ -89,6 +89,23 @@ jQuery(function($){
 	<% end %>	
 	
 	console.log("The length of slider array: " + slider_array.length);
+
+  var featured_wrapper = $("#featured_data");
+  var actual_slider_object_array = [];
+  if(featured_wrapper.length !=  0 && $(".featured", featured_wrapper).length != 0   ){  
+      $(".featured", featured_wrapper).each(function(){
+        var $this = $(this);
+        var slider_object = {
+    	    image: $(".featured_image", $this).text(),
+    	    title: $(".featured_title", $this).text(),
+    	    thumb: $(".featured_thumbnail", $this).text()
+    	  };
+    	  actual_slider_object_array.push( slider_object) ;
+      });
+      
+      slider_array =  actual_slider_object_array  ;
+    
+  }
 
 	$.supersized({	
 		// Functionality

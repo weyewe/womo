@@ -1,0 +1,36 @@
+<div class="ef-item">
+  <div class="ef-item-inner">
+    <div class="proj-img">
+      <%= link_to project_url(project) do %>  
+        <%= image_tag project.main_picture.dashboard_image_url  %>
+      <% end %>
+      
+      <!-- <img src="images/content/img800-1.jpg" alt=""> -->
+              <%#= link_to project.title, project_url(project)  %>
+      <!-- <div class="ef-overlay">
+           <a class="lb" href="images/content/img800-1.jpg" title="Your description here"></a>
+
+           <a class="ef-external-link ef-read-more" href="blog-post.html#blog-post"></a>
+         </div> -->
+    </div>
+
+                	
+    		                        	
+    <div class="ef-item-description">
+      <h5>
+        <%= link_to project.title, project_url(project) , :class => "ef-external-link" %>
+      </h5>
+      <p>
+        <%= project.teaser %>
+      </p> 
+    </div>
+    <div class="ef-post-details clearfix">
+      <div><span><%= project.first_publication_datetime.day %></span> <%= Date::MONTHNAMES[project.first_publication_datetime.month] %></div>
+      <!-- <div><span class="ef-comments">20</span> </div> -->
+      <div>
+        <%= link_to "Read More", project_url(project) , :class => "ef-external-link ef-button" %>
+        <!-- <a class="ef-external-link ef-button" href="blog-post.html#blog-post">Read More</a> -->
+      </div>
+    </div>
+  </div>
+</div>

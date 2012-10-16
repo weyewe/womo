@@ -143,9 +143,9 @@ jQuery(function($){
 /*Navigation menu, smooth scrolling and current section detection*/
 		
 		/*Toggle menu*/	
-			$('.ef-menu-tab, .ef-menu-wrapper').hover(function () {
-				$('.ef-menu-wrapper').toggleClass('ef-toggle-menu')
-			});
+      $('.ef-menu-tab, .ef-menu-wrapper').hover(function () {
+       $('.ef-menu-wrapper').toggleClass('ef-toggle-menu');
+      });
 			
 		/*Lavalamp*/
 		    $('.ef-navmenu').lavaLamp({
@@ -395,11 +395,11 @@ jQuery(function($){
 	
 /*goMap*/	
 
-
-	var lat1 = -6.173494,
-		long1 = 106.783300,
+// -6.172593, 106.783203
+	var lat1 = -6.172593,
+		long1 = 106.783203,
 		lat2 = 48.85308,
-		long2 = 2.36900
+		long2 = 2.36900; 
 
     $(".ef-map").goMap({
 		maptype:"ROADMAP",

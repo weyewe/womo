@@ -1,0 +1,116 @@
+/* theme changer */
+.no-js .theme-changer-wrap {
+	display: none;
+}
+
+.no-js #ef-topbar-button {
+	display: none;
+}
+
+.theme-changer-wrap {
+	color: #202020;
+	position: absolute;
+	z-index: 5000;
+	bottom: 40px;
+	right: 0;
+	font-size: 0.8em;
+}
+
+.theme-changer-wrap:after {
+	background: url("../images/comments-corner.png") no-repeat scroll left top transparent;
+    content: "";
+    height: 16px;
+    left: -7px;
+    position: absolute;
+    bottom: 20px;
+    width: 8px;
+}
+
+.theme-changer {
+	background-color: #fff;
+	-webkit-border-radius: 4px 0px 0px 4px;
+	        border-radius: 4px 0px 0px 4px;
+}
+
+.changer-inner {
+	overflow:hidden;
+	padding: 15px 20px;
+}
+
+.theme-changer-wrap a {
+	float: left;
+	display: block;
+	margin-right: 3px;
+	margin-bottom: 3px;
+	width: 24px;
+	height: 24px
+}
+
+a.color-themes {
+	cursor:pointer;
+}
+
+a.col1 {
+	background: #FF4747;
+}
+
+a.col2 {
+	background: #ff8135;
+}
+
+a.col3 {
+	background: #84cd1c;
+}
+
+a.col4 {
+	background: #639be8;
+}
+
+a.col5 {
+	background: #808080;
+}
+
+.changer-inner span {
+	display: block;
+	margin-bottom: 15px
+}
+
+div.open-close-demo {
+	position: absolute;
+	bottom: 8px;
+	right: auto;
+	cursor:pointer;
+}
+
+#ef-light-sw, #ef-dark-sw {
+	padding: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#ef-light-sw {
+	border: 1px solid #999999;
+}
+
+#ef-dark-sw {
+	background: #202020;
+	color: #fff;
+}
+
+@media only screen and (max-width: 1460px) {
+	
+	.theme-changer-wrap {
+		bottom: 30px;
+	}
+	
+	div.open-close-demo {
+		width: 33px;
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.theme-changer-wrap {
+		display: none;
+	}
+}

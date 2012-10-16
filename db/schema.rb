@@ -54,10 +54,12 @@ ActiveRecord::Schema.define(:version => 20121015153046) do
     t.string   "index_image_url"
     t.string   "dashboard_image_url"
     t.string   "feature_image_url"
+    t.string   "feature_image_thumbnail_url"
     t.integer  "original_image_size"
     t.integer  "index_image_size"
     t.integer  "dashboard_image_size"
-    t.string   "feature_image_size"
+    t.integer  "feature_image_size"
+    t.integer  "feature_image_thumbnail_size"
     t.string   "assembly_url"
     t.boolean  "is_resizing_completed",        :default => false
     t.integer  "width"

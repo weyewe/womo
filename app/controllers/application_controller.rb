@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     if devise_controller? && resource_name == :user && action_name == 'new'
       "devise"
+    elsif ( params[:controller] == 'home' && params[:action] == 'index'  ) or 
+          ( params[:controller]== 'projects' && params[:action] == 'show'  ) 
     else
       "application"
     end

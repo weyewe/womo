@@ -56,7 +56,10 @@ class Picture < ActiveRecord::Base
     
     if is_featured_check == TRUE_CHECK
       self.feature_image_url = params['results']['resize_featured']['0']['url']   
-      self.feature_image_size = params['results']['resize_featured']['0']['size']       
+      self.feature_image_size = params['results']['resize_featured']['0']['size']    
+      
+      self.feature_image_thumbnail_url = params['results']['resize_featured_thumbnail']['0']['url']   
+      self.feature_image_thumbnail_size = params['results']['resize_featured_thumbnail']['0']['size']   
       self.is_feature_picture = true         
     end
     

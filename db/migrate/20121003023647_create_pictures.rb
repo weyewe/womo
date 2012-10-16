@@ -10,12 +10,14 @@ class CreatePictures < ActiveRecord::Migration
       t.string   :index_image_url  # big size = 800px # this is for the blog (public consumption)
       t.string   :dashboard_image_url  # small size = 600px  # this is for the internal content creation
       t.string   :feature_image_url  # 1600px width
+      t.string  :feature_image_thumbnail_url
       
       
       t.integer :original_image_size
       t.integer :index_image_size
       t.integer :dashboard_image_size 
-      t.string   :feature_image_size
+      t.integer :feature_image_size
+      t.integer  :feature_image_thumbnail_size
       
       t.string  :assembly_url
       t.boolean :is_resizing_completed, :default => false
